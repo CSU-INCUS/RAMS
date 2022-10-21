@@ -169,7 +169,7 @@ do j = 1,n3
    !Set up Vertical profile 
    if(k<=2) cifnp(k,i,j)=cin_maxt
    ! Exponential decrease that scales with pressure decrease
-   if(k>2)  cifnp(k,i,j)=cin_maxt*exp(-zt(k)/7000.)
+   if(k>2)  cifnp(k,i,j)=cin_maxt*exp(-zt(k)/cin_sh)
 
    !Output initial sample profile
    if(iaeroprnt==1 .and. i==1 .and. j==1 .and. print_msg) then
@@ -218,14 +218,14 @@ do j = 1,n3
      
      if(iccn_prof==1) then
        !Exponential decrease that scales with pressure decrease
-       if(k>2)  cccnp(k,i,j)=ccn_maxt*exp(-zt(k)/7000.)
+       if(k>2)  cccnp(k,i,j)=ccn_maxt*exp(-zt(k)/ccn_sh)
 
      ! PJM Added more realistic aerosol profile (loosely based on observed vertical profiles)
      elseif(iccn_prof==2) then
        !More realistic profile, with constant ccn in boundary layer and exp. decr. above boundary layer
        if(zt(k)<=bl_hgt) cccnp(k,i,j) = ccn_maxt  ! Constant ccn conc. in boundary layer
 
-       if(zt(k)>bl_hgt)  cccnp(k,i,j) = ccn_maxt * exp(-zt(k)/3500.) ! Exponential decrease that scales with height 
+       if(zt(k)>bl_hgt)  cccnp(k,i,j) = ccn_maxt * exp(-zt(k)/ccn_sh) ! Exponential decrease that scales with height 
 
      ! PJM Added more realistic aerosol profile (loosely based on observed vertical profiles)
      elseif(iccn_prof==3) then
