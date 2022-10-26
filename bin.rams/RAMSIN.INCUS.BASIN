@@ -43,7 +43,7 @@
 ! Coarse grid specifications
 
    IHTRAN   = 1,              ! 0-Cartesian, 1-Polar stereo
-   DELTAX   = 1000.,          ! X-Y grid spacing (meters)
+   DELTAX   = 1600.,          ! X-Y grid spacing (meters)
    DELTAZ   = 100.,           ! Z grid spacing (set to 0. to use ZZ)
    DZRAT    = 1.03,           ! Vertical grid stretch ratio
    DZMAX    = 250.,          ! Maximum delta Z for vertical stretch
@@ -237,7 +237,7 @@
                0.1, 0.1, 0.1, 0.1,                          ! 'CGP', 'CPP', 'CAP', 'CSP',
                0.000001, 0.000001, 0.000001, 0.000001,      ! 'RCP', 'RDP', 'RRP', 'RHP',
                0.000001, 0.000001, 0.000001, 0.000001,      ! 'RGP', 'RPP', 'RAP', 'RSP',
-               0.001, 0.001, 0.001, 0.001,                  ! 'LATHEATVAP', 'LATHEATFRZ', 'FTHRD','RTP',
+               0.001, 0.001, 0.001, 0.0001,                  ! 'LATHEATVAP', 'LATHEATFRZ', 'FTHRD','RTP',
                0.1, 0.00001, 0.,                            ! 'SOIL_ENERGY','SOIL_WATER','SOIL_TEXT',
                0.0001, 0.001, 0.1, 0.0001,                  ! 'USTAR','CAN_TEMP','PATCH_AREA','PATCH_ROUGH',
                0.01, 0.001,                                 ! 'VEG_TEMP','VEG_FRACAREA',
@@ -280,7 +280,7 @@
 
    ITOPTFN  = '../../sfctypehdf5/DEM30s-h5/EL',  !CHANGEME
               '../../sfctypehdf5/DEM30s-h5/EL',  !CHANGEME
-   ISSTFN   = '../../sfctypehdf5/sst-h5/S',      !CHANGEME
+   ISSTFN   = '../../sfctypehdf5/sst-h5/S',      !CHANGEME; be sure to use Reynolds SSTs
               '../../sfctypehdf5/sst-h5/S',      !CHANGEME
    IVEGTFN  = '../../sfctypehdf5/ogedata-h5/GE', !CHANGEME
               '../../sfctypehdf5/ogedata-h5/GE', !CHANGEME
@@ -718,7 +718,7 @@
    ISZSTAGE   = 1,        ! Main switches for isentropic-sigz
    IVRSTAGE   = 1,        !    "varfile" processing
     
-   ISAN_INC = 0600,         ! ISAN processing increment (hhmm)
+   ISAN_INC = 0100,         ! ISAN processing increment (hhmm)
                             !    range controlled by TIMMAX, 
                             !    IYEAR1,...,ITIME1
 
@@ -737,8 +737,8 @@
                             !  3 = Try to continue processing anyway
 
 ! Input data file prefixes
-   IDATAIN = 0,             ! dp-p files have: 0=Relhum, 1=specific humidity
-   IAPR    = './dp-p', ! Input press level dataset
+   IDATAIN = 1,             ! dp-p files have: 0=Relhum, 1=specific humidity !CHANGEME
+   IAPR    = './dp-p', ! Input press level dataset !CHANGEME
    IARAWI  = ' ', ! Archived rawindsonde file name
    IASRFCE = ' ', ! Archived surface obs file name
 
@@ -747,7 +747,7 @@
 
 ! File names and dispose flags 
 
-   VARPFX    = './var',  ! isan file names prefix
+   VARPFX    = './var',  ! isan file names prefix !CHANGEME
    IOFLGISZ  = 0,           ! Isen-sigz file flag: 0 = no write, 1 = write
    IOFLGVAR  = 1,           ! Var file flag: 0 = no write, 1 = write
 
@@ -772,7 +772,7 @@
 ! Analyzed grid information:
 !-----------------------------------
 
-   NIGRIDS  = 4,            ! Number of RAMS grids to analyze
+   NIGRIDS  = 1,            ! Number of RAMS grids to analyze
 
    TOPSIGZ  = 20000.,       ! Sigma-z coordinates to about this height
 

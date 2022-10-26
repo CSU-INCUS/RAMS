@@ -209,7 +209,7 @@ integer :: hdferr ! Error flag
 ! 1 to enable truncation, 0 to disable. 
 integer :: enable_zfp_truncation
 real*4 :: zfp_accuracy
-print*, "Variable: ", dsetname, " ZFP accuracy: ", zfp_accuracy
+!print*, "Variable: ", dsetname, " ZFP accuracy: ", zfp_accuracy
 if(zfp_accuracy == 0.) then
 enable_zfp_truncation = 0
 elseif(zfp_accuracy>0.) then
