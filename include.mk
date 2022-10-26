@@ -1,3 +1,4 @@
+# using: module load gcc/10.3 mpi-hpe/mpt.2.25 comp-intel/2020.4.304 szip/2.1.1
 #############################################################################
 # Define make (gnu make works best).
 #############################################################################
@@ -6,7 +7,7 @@ MAKE=/usr/bin/make
 #############################################################################
 # Set your RAMS root path and version number.
 #############################################################################
-RAMS_ROOT=/home/smsaleeb/rams_20210806_dev
+RAMS_ROOT=/nobackupp19/swfreema/INCUS/basin_simulations/argentina_cacti_summer_2018/rams_code/RAMS
 RAMS_VERSION=6.3.02
 
 #############################################################################
@@ -15,15 +16,15 @@ RAMS_VERSION=6.3.02
 # Typically can use "parallel" for either, but some supercomputers require
 # use of the serial executable.
 #############################################################################
-HDF5_ROOT=/home/smsaleeb/software/hdf5-1.10.7
+HDF5_ROOT=/nobackupp19/swfreema/INCUS/basin_simulations/philippines_camp2ex_summer/rams_code/hdf5-zfp-2/HDF5-1.10.7/
 # ZFP ROOT only needed if gcc compiler flag '-DENABLE_ZFP_COMPRESSION' is used
-H5Z_ZFP_ROOT=/home/pmarin/misc/h5z_zfp_git/H5Z-ZFP/install # For ZFP Compression
+H5Z_ZFP_ROOT=/nobackupp19/swfreema/INCUS/basin_simulations/philippines_camp2ex_summer/rams_code/hdf5-zfp/H5Z-ZFP-1.1.0
 
 #############################################################################
 # Set root locations for parallel processing MPI software.
 # You can comment out MPI_ROOT for serial processing compile.
 #############################################################################
-MPI_ROOT=/home/smsaleeb/software/mpich-3.3.2
+MPI_ROOT=#/nasa/hpe/mpt/2.25_rhel79
 
 #############################################################################
 # Do not change these 2. They point from RAMS_ROOT to the source code.
@@ -80,11 +81,38 @@ CMACH=PC_LINUX1  #Standard Linux (only option available now)
 # (-g) for debugging, (-traceback) for more compiler error info
 # (-check bounds) for array bounds checking, (-fp-model precise) for IEEE
 # (-check uninit) for finding uninitialized variables, (-free) for free format
-F_COMP=/home/smsaleeb/intel/composer_xe_2011_sp1.8.273/bin/intel64/ifort
-F_OPTS1=-free -O1 -fp-model precise
-F_OPTS2=-free -O2 -fp-model precise
-LOADER_OPTS= -free -O2 -fp-model precise
-LIBS=-L/usr/lib/x86_64-linux-gnu -lrt -lpthread -lsz -lz
+F_COMP=mpif90
+
+# Basic
+#F_OPTS1=-free -O1 -fp-model precise
+#F_OPTS2=-free -O2 -fp-model precise
+#LOADER_OPTS= -free -O2 -fp-model precise
+#LIBS=-L/usr/lib/x86_64-linux-gnu -L/nasa/szip/2.1.1/lib -lrt -lpthread -lsz -lz
+
+# Strict
+#F_OPTS1=-free -O1 -fp-model strict
+#F_OPTS2=-free -O2 -fp-model strict
+#LOADER_OPTS= -free -O2 -fp-model strict
+#LIBS=-L/usr/lib/x86_64-linux-gnu -L/nasa/szip/2.1.1/lib -lrt -lpthread -lsz -lz
+
+# All Intel 
+#F_OPTS1=-free -O1 -fp-model strict -ipo -axCORE-AVX512,CORE-AVX2 -xAVX -qopt-zmm-usage=high 
+#F_OPTS2=-free -O2 -fp-model strict -ipo -axCORE-AVX512,CORE-AVX2 -xAVX -qopt-zmm-usage=high 
+#LOADER_OPTS= -free -O2 -fp-model strict -ipo -axCORE-AVX512,CORE-AVX2 -xAVX -qopt-zmm-usage=high 
+#LIBS=-L/usr/lib/x86_64-linux-gnu -lrt -lpthread -lsz -lz -L/nasa/szip/2.1.1/lib
+
+# AMD Compatible Intel
+F_OPTS1=-free -O1 -fp-model strict -ipo -axCORE-AVX512,CORE-AVX2 -xAVX -qopt-zmm-usage=high -fimf-arch-consistency=true
+F_OPTS2=-free -O2 -fp-model strict -ipo -axCORE-AVX512,CORE-AVX2 -xAVX -qopt-zmm-usage=high -fimf-arch-consistency=true
+LOADER_OPTS= -free -O2 -fp-model strict -ipo -axCORE-AVX512,CORE-AVX2 -xAVX -qopt-zmm-usage=high -fimf-arch-consistency=true
+LIBS=-L/usr/lib/x86_64-linux-gnu -lrt -lpthread -lsz -lz -L/nasa/szip/2.1.1/lib
+
+# AMD Rome
+#F_OPTS1=-free -O1 -fp-model strict -ipo -march=core-avx2 -qopt-zmm-usage=high -fimf-arch-consistency=true
+#F_OPTS2=-free -O2 -fp-model strict -ipo -march=core-avx2 -qopt-zmm-usage=high -fimf-arch-consistency=true
+#LOADER_OPTS= -free -O2 -fp-model strict -ipo -march=core-avx2 -qopt-zmm-usage=high -fimf-arch-consistency=true
+#LIBS=-L/usr/lib/x86_64-linux-gnu -lrt -lpthread -lsz -lz -L/nasa/szip/2.1.1/lib
+
 
 #*****************************
 # FORTRAN INTEL IFORT COMPILER Double Precision
@@ -146,7 +174,7 @@ LIBS=-L/usr/lib/x86_64-linux-gnu -lrt -lpthread -lsz -lz
 # that are not really as issue for us, but you can turn warnings back on by
 # removing the "-w" if you wish to alter code to eliminate warnings.
 #############################################################################
-C_COMP=gcc
+C_COMP=mpicc
 C_OPTS=-O3 -DUNDERSCORE -DLITTLE -std=gnu99 -DENABLE_PARALLEL_COMPRESSION -w -DENABLE_ZFP_COMPRESSION
 #C_OPTS=-O3 -DUNDERSCORE -DLITTLE -std=gnu99 -DRAMS_DOUBLE_PREC \
 #  -DENABLE_PARALLEL_COMPRESSION -w
@@ -169,6 +197,6 @@ ARCH=ar rsU
 #  specs are: -lmpich, -lmpl, -lmpi.
 # Comment out these "PAR_" lines for serial processing compile.
 #############################################################################
-PAR_INCS=-I$(MPI_ROOT)/include
-PAR_LIBS=-L$(MPI_ROOT)/lib -lmpich -lmpl
+PAR_INCS=#-I$(MPI_ROOT)/include
+PAR_LIBS=#-L$(MPI_ROOT)/lib #-lmpich -lmpl
 PAR_DEFS=-DRAMS_MPI
