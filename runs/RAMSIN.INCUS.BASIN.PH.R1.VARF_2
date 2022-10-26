@@ -9,22 +9,22 @@
 !  Type of model run to perform
 
 !   RUNTYPE  = 'INITIAL',                      !CHANGEME                              
-   RUNTYPE  = 'MAKESFC',                       
-!   RUNTYPE  = 'MAKEVFILE',
+!   RUNTYPE  = 'MAKESFC',                       
+   RUNTYPE  = 'MAKEVFILE',
 !   RUNTYPE  = 'MAKEHFILE',
 !   RUNTYPE  = 'HISTORY',
 !   RUNTYPE  = 'ERROR',
 
    TIMEUNIT = 'h',          ! 'h','m','s' - Time units of TIMMAX, TIMSTR
 
-   TIMMAX   = 60.,           ! Final time of simulation !CHANGEME
+   TIMMAX   = 12.,           ! Final time of simulation !CHANGEME
 
 !  Start of simulation or ISAN processing
 
    IMONTH1  = 09,           ! Month   !CHANGEME
-   IDATE1   = 09,           ! Day     !CHANGEME
+   IDATE1   = 10,           ! Day     !CHANGEME
    IYEAR1   = 2019,         ! Year    !CHANGEME
-   ITIME1   = 1200,         ! GMT of model TIME = 0. !CHANGEME
+   ITIME1   = 0000,         ! GMT of model TIME = 0. !CHANGEME
 
 ! Grid specifications
 

@@ -9,8 +9,8 @@
 !  Type of model run to perform
 
 !   RUNTYPE  = 'INITIAL',                      !CHANGEME                              
-   RUNTYPE  = 'MAKESFC',                       
-!   RUNTYPE  = 'MAKEVFILE',
+!   RUNTYPE  = 'MAKESFC',                       
+   RUNTYPE  = 'MAKEVFILE',
 !   RUNTYPE  = 'MAKEHFILE',
 !   RUNTYPE  = 'HISTORY',
 !   RUNTYPE  = 'ERROR',

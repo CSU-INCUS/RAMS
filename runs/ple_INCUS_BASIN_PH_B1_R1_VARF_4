@@ -1,10 +1,10 @@
 #PBS -S /bin/csh
 #PBS -V
-#PBS -q devel
-#PBS -lselect=1:ncpus=1:mpiprocs=1:model=bro,walltime=0:05:00
+#PBS -q normal
+#PBS -lselect=1:ncpus=1:mpiprocs=1:model=bro,walltime=2:00:00
 #PBS -j oe
 #PBS -o /nobackupp19/swfreema/INCUS/basin_simulations/philippines_camp2ex_summer/stdout
-#PBS -N INCUS_PH_B1_SFC
+#PBS -N INCUS_PH_B1_VARF_4
 #PBS -m be
 #PBS -r n
 
@@ -24,5 +24,5 @@ setenv LD_LIBRARY_PATH /nobackupp19/swfreema/INCUS/rams_dev/hdf5-zfp-work/H5Z-ZF
 # HDF5 Plugin path
 setenv HDF5_PLUGIN_PATH /nobackupp19/swfreema/INCUS/rams_dev/hdf5-zfp-work/H5Z-ZFP-1.1.0/plugin
 
-mpiexec ./bin.rams/rams-6.3.02 -f ./runs/RAMSIN.INCUS.BASIN.PH.R1.SFC  >& /nobackupp19/swfreema/INCUS/basin_simulations/philippines_camp2ex_summer/stdout/INCUS_BASIN_PH_R1_SFC_LOG1.txt
+mpiexec ./bin.rams/rams-6.3.02 -f ./runs/RAMSIN.INCUS.BASIN.PH.R1.VARF_4  >& /nobackupp19/swfreema/INCUS/basin_simulations/philippines_camp2ex_summer/stdout/INCUS_BASIN_PH_R1_VARF_4_LOG1.txt
 #./bin.dp.grib1/run_dgrib_era5.sh >& /nobackupp19/swfreema/INCUS/basin_simulations/philippines_camp2ex_summer/stdout/dgrib_log_1.txt

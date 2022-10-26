@@ -8,8 +8,8 @@
 
 !  Type of model run to perform
 
-!   RUNTYPE  = 'INITIAL',                      !CHANGEME                              
-   RUNTYPE  = 'MAKESFC',                       
+   RUNTYPE  = 'INITIAL',                      !CHANGEME                              
+!   RUNTYPE  = 'MAKESFC',                       
 !   RUNTYPE  = 'MAKEVFILE',
 !   RUNTYPE  = 'MAKEHFILE',
 !   RUNTYPE  = 'HISTORY',
@@ -100,11 +100,11 @@
    NUD_TYPE = 1,             ! =0 - no analysis nudging
                              ! =1 - nudge from varfiles
                              
-   VARFPFX  = './var',       ! Varfile prefix !CHANGEME
+   VARFPFX  = '/nobackup/swfreema/IN_PH_B1/var',       ! Varfile prefix !CHANGEME
    VWAIT1   = 0.,            ! wait between each VFILE check (s)
    VWAITTOT = 0.,            ! total wait before giving up on a VFILE (s)
    
-   NUDLAT   = 50,             ! Number of points in lateral bnd region !CHANGEME (2.5% of max(nnxp,nnyp))
+   NUDLAT   = 38,             ! Number of points in lateral bnd region !CHANGEME (2.5% of max(nnxp,nnyp))
    TNUDLAT  = 900.,          ! Nudging time scale(s) at lateral boundary
    TNUDCENT = 0.,            ! Nudging time scale(s) in center of domain
    TNUDTOP  = 900.,           ! Nudging time scale (s) at top of domain
@@ -198,7 +198,7 @@
 !  Analysis file output
  
    IOUTPUT  =  1,             ! 0-no files, 1-write files
-   AFILEPREF  = '/nobackup/swfreema/IN_PH_B1/', !CHANGEME  
+   AFILEPREF  = '/nobackup/swfreema/IN_PH_B1/a', !CHANGEME  
                               ! File prefix for all analysis files
                               !   state,mean,lite,both
                               
@@ -613,12 +613,12 @@
                              !     then Linear Decrease to Model Top
 
    CCN_MAX    = 500.,       ! CCN at surface (#/mg) !CHANGEME 500 or 2500
-   CCN_SH     = 5000.,       ! CCN exponential scale height (for ICCN_PROF = 1 or 2) !CHANGEME 10000 and 5000
+   CCN_SH     = 10000.,       ! CCN exponential scale height (for ICCN_PROF = 1 or 2) !CHANGEME 10000 and 5000
 
    BL_HGT     = 2000.,       ! Boundary layer height (m) - for CCN_PROF=2
    TRAN_DEPTH = 1000.,       ! Transition depth (linear) for BL -> FT ccn conc. (m) - for CCN_PROF=3
    CCN_FT     = 100.,        ! Free Tropospheric CCN Concentration - for CCN_PROF=3
-   CIN_MAX    = 0.001,        ! Ice Nuclei (#/mg) !CHANGEME 0.001 or 0.01
+   CIN_MAX    = 1,        ! Ice Nuclei (#/mg) !CHANGEME 0.001 or 0.01
    CIN_SH     = 5000.,       ! Ice Nuclei expoential scale height (for IIFN = 1 or 2)
 
    GCCN_MAX   = 0.0,        ! Giant-CCN (#/mg)
