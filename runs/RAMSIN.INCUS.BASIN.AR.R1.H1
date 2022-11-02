@@ -104,7 +104,7 @@
    VWAIT1   = 0.,            ! wait between each VFILE check (s)
    VWAITTOT = 0.,            ! total wait before giving up on a VFILE (s)
    
-   NUDLAT   = 50,             ! Number of points in lateral bnd region !CHANGEME (2.5% of max(nnxp,nnyp))
+   NUDLAT   = 12,             ! Number of points in lateral bnd region !CHANGEME (2.5% of max(nnxp,nnyp))
    TNUDLAT  = 900.,          ! Nudging time scale(s) at lateral boundary
    TNUDCENT = 0.,            ! Nudging time scale(s) in center of domain
    TNUDTOP  = 900.,           ! Nudging time scale (s) at top of domain
@@ -184,7 +184,7 @@
 
 ! History start (if RUNTYPE='HISTORY')
 
-   HFILIN   = '/nobackup/swfreema/IN_AR_B1/a-A-2018-12-13-173000-head.txt',
+   HFILIN   = '/nobackup/swfreema/IN_AR_B1/a-A-2018-12-13-143000-head.txt',
                              ! Input state file name
 
 ! Analysis file input for assimilation: 1=yes, 0=no
