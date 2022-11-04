@@ -18,8 +18,9 @@ use micro_prm, only:nkr
 implicit none
 
 integer :: ngrids1,nzg1,nzs1,npatch1,nvegpat1,ierr,ng,nc &
-           ,ie,maxarr1,maxarr2,ngr,maxx1,maxy1,maxz1,npts,nv,nvh,nzpg1 &
+           ,ie,ngr,maxx1,maxy1,maxz1,npts,nv,nvh,nzpg1 &
            ,iyearh,imonthh,idateh,itimeh,ihtran1,checkhist,inithisflg,goahead
+integer(kind=8):: maxarr1, maxarr2
 integer, external :: cio_i,cio_f
 integer,save :: iunhd=11
 integer, allocatable, dimension(:) :: nnxp1,nnyp1,nnzp1

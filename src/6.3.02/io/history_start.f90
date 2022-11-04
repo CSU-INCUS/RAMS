@@ -12,7 +12,8 @@ use kpp_parameters, only:nkppz
 
 implicit none
 
-integer :: maxarr,ngr
+integer :: ngr
+integer(kind=8) :: maxarr
 integer :: ifm,icm
 
 ! Find maximum size of any array on history file. Allocate scratch array of
@@ -171,7 +172,8 @@ use kpp_parameters, only:nkppz
 
 implicit none
 
-integer :: maxarr,checkhist
+integer :: checkhist
+integer(kind=8) :: maxarr
 character(len=*) :: hnamein
 
 integer :: ngr,npts,nc,nv,nvh,ndims,idims(4)

@@ -88,31 +88,32 @@ use mem_grid
 
 implicit none
 
-integer :: nf,nc,nrat,if,jf,kf,kc
+integer :: nf,nc,nrat,ibetter,jf,kf,kc
 real :: alpha,et,ev
 real, dimension(:), allocatable :: vctr1, vctr2, vctr3
 
 do nf = 2,ngrids
    nc = nxtnest(nf)
-
-   allocate(vctr1(nnzp(nc)))
-   allocate(vctr2(nnzp(nc)))
-   allocate(vctr3(nnzp(nc)))
+   print*, "nf: ", nf, " nc: ", nc
+   print*, "allocating number of points: ", nnzp(nc)
+   allocate(vctr1(nnzp(nf)))
+   allocate(vctr2(nnzp(nf)))
+   allocate(vctr3(nnzp(nf)))
 
    if (nc .eq. 0) go to 50
    nrat = nstratx(nf)
    alpha = ((1. / float(nrat)) ** 2 - 1.) / 24.
-   do if = 1,nnxp(nf)
-      et = -.5 + float(2 * mod(if+nrat-2,nrat) + 1) / (2.0 * float(nrat))
-      ev = -.5 + float(mod(if+nrat-2,nrat) + 1) / float(nrat)
+   do ibetter = 1,nnxp(nf)
+      et = -.5 + float(2 * mod(ibetter+nrat-2,nrat) + 1) / (2.0 * float(nrat))
+      ev = -.5 + float(mod(ibetter+nrat-2,nrat) + 1) / float(nrat)
 
-      ei1(if,nf) = et * (et - 1.) / 2. + alpha
-      ei2(if,nf) = (1. - et * et) - 2. * alpha
-      ei3(if,nf) = et * (et + 1.) / 2. + alpha
-      ei4(if,nf) = (ev * ev - 0.25) * (1.5 - ev) / 6.0
-      ei5(if,nf) = (0.5 - ev) * (2.25 - ev * ev) * 0.5
-      ei6(if,nf) = (0.5 + ev) * (2.25 - ev * ev) * 0.5
-      ei7(if,nf) = (ev * ev - 0.25) * (1.5 + ev) / 6.0
+      ei1(ibetter,nf) = et * (et - 1.) / 2. + alpha
+      ei2(ibetter,nf) = (1. - et * et) - 2. * alpha
+      ei3(ibetter,nf) = et * (et + 1.) / 2. + alpha
+      ei4(ibetter,nf) = (ev * ev - 0.25) * (1.5 - ev) / 6.0
+      ei5(ibetter,nf) = (0.5 - ev) * (2.25 - ev * ev) * 0.5
+      ei6(ibetter,nf) = (0.5 + ev) * (2.25 - ev * ev) * 0.5
+      ei7(ibetter,nf) = (ev * ev - 0.25) * (1.5 + ev) / 6.0
    enddo
 
    if (jdim .eq. 1) then

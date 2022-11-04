@@ -9,10 +9,10 @@
 !  Type of model run to perform
 
 !   RUNTYPE  = 'INITIAL',                      !CHANGEME                              
-!   RUNTYPE  = 'MAKESFC',                       
+   RUNTYPE  = 'MAKESFC',                       
 !   RUNTYPE  = 'MAKEVFILE',
 !   RUNTYPE  = 'MAKEHFILE',
-   RUNTYPE  = 'HISTORY',
+!   RUNTYPE  = 'HISTORY',
 !   RUNTYPE  = 'ERROR',
 
    TIMEUNIT = 'h',          ! 'h','m','s' - Time units of TIMMAX, TIMSTR
@@ -30,8 +30,8 @@
 
    NGRIDS   = 3,            ! Number of grids to run
  
-   NNXP     = 1500,625,2000,        ! Number of x gridpoints !CHANGEME
-   NNYP     = 750,625,2000,        ! Number of y gridpoints !CHANGEME
+   NNXP     = 1500,626,1998,        ! Number of x gridpoints !CHANGEME
+   NNYP     = 750,626,1998,        ! Number of y gridpoints !CHANGEME
    NNZP     = 118,118,236,        ! Number of z gridpoints
    NZG      = 11,           ! Number of soil layers
    NZS      = 1,            ! Maximum number of snow layers
@@ -79,8 +79,8 @@
    NJNEST   = 1,0,0,0,           ! j-point
    NKNEST   = 1,1,1,1,           ! k-point
 
-   CENTLAT =   16.4,17.2,17.2 ! Center lat/lon of grids, may or !CHANGEME
-   CENTLON =  125.0,119.0,119.0 ! may not be same as pole point   !CHANGEME
+   CENTLAT =   16.4,17.2,17.2, ! Center lat/lon of grids, may or !CHANGEME
+   CENTLON =  125.0,119.0,119.0, ! may not be same as pole point   !CHANGEME
  
    NNSTTOP  = 1,1,1,1,           ! Flag (0-no or 1-yes) if this
    NNSTBOT  = 1,1,1,1,           ! Nest goes the top or bottom of the
@@ -211,7 +211,7 @@
                               !  the subsequent write. 
                               !  Intended to be a mutiple of and >= FRQSTATE
 !-----------------------------------------------------------------------
-   FRQLITE  = 300.,300.,30.,            ! Frequency for "lite" files
+   FRQLITE  = 300.,            ! Frequency for "lite" files
                              !   = 0 : no lite files
    NLITE_VARS=48,
 
@@ -441,12 +441,12 @@
                              !      (horiz and vert same)
                              !  4 - Deardorff TKE (horiz and vert same)
 
-   IDIFFPERTS = 3,3,3,           ! 0 - Normal scalar diffusion
+   IDIFFPERTS = 3,        ! 0 - Normal scalar diffusion
                              ! 1 - Diffuse perturbations from base state THP,RTP
                              ! 2 - Diffuse perturbations from mean state THP,RTP
                              ! 3 - Diffuse perturbations from varfile state THP,RTP
 
-   IHORGRAD = 2,2,2,             !  1 - horiz grad frm decomposed sigma grad
+   IHORGRAD = 2,             !  1 - horiz grad frm decomposed sigma grad
                              !  2 - true horizontal gradient. 
                              !      Non-conserving, but allows small DZ
 
@@ -748,13 +748,13 @@
    IASRFCE = ' ', ! Archived surface obs file name
 
 ! Header file name for history nudging files (only prefix is used)
-   VAR_HFILE = './a-A-',
+   VAR_HFILE = '/nobackupp19/swfreema/IN_PH_B1_N1/a-A-',
 
 ! File names and dispose flags 
 
-   VARPFX    = '/nobackupp19/swfreema/IN_PH_B1/var',  ! isan file names prefix
+   VARPFX    = '/nobackupp19/swfreema/IN_PH_B1_N1/var',  ! isan file names prefix
    IOFLGISZ  = 0,           ! Isen-sigz file flag: 0 = no write, 1 = write
-   IOFLGVAR  = 1,           ! Var file flag: 0 = no write, 1 = write
+   IOFLGVAR  = 0,           ! Var file flag: 0 = no write, 1 = write
 
  $END
  
