@@ -103,10 +103,10 @@ F_COMP=mpif90
 #LIBS=-L/usr/lib/x86_64-linux-gnu -lrt -lpthread -lsz -lz -L/nasa/szip/2.1.1/lib
 
 # AMD Compatible Intel
-F_OPTS1=-free -O1 -fp-model strict -ipo -axCORE-AVX512,CORE-AVX2 -xAVX -qopt-zmm-usage=high -fimf-arch-consistency=true
-F_OPTS2=-free -O2 -fp-model strict -ipo -axCORE-AVX512,CORE-AVX2 -xAVX -qopt-zmm-usage=high -fimf-arch-consistency=true
-LOADER_OPTS= -free -O2 -fp-model strict -ipo -axCORE-AVX512,CORE-AVX2 -xAVX -qopt-zmm-usage=high -fimf-arch-consistency=true
-LIBS=-L/usr/lib/x86_64-linux-gnu -lrt -lpthread -lsz -lz -L/nasa/szip/2.1.1/lib
+#F_OPTS1=-free -O1 -fp-model strict -ipo -axCORE-AVX512,CORE-AVX2 -xAVX -qopt-zmm-usage=high -fimf-arch-consistency=true
+#F_OPTS2=-free -O2 -fp-model strict -ipo -axCORE-AVX512,CORE-AVX2 -xAVX -qopt-zmm-usage=high -fimf-arch-consistency=true
+#LOADER_OPTS= -free -O2 -fp-model strict -ipo -axCORE-AVX512,CORE-AVX2 -xAVX -qopt-zmm-usage=high -fimf-arch-consistency=true
+#LIBS=-L/usr/lib/x86_64-linux-gnu -lrt -lpthread -lsz -lz -L/nasa/szip/2.1.1/lib
 
 # AMD Rome
 #F_OPTS1=-free -O1 -fp-model strict -ipo -march=core-avx2 -qopt-zmm-usage=high -fimf-arch-consistency=true
@@ -114,6 +114,11 @@ LIBS=-L/usr/lib/x86_64-linux-gnu -lrt -lpthread -lsz -lz -L/nasa/szip/2.1.1/lib
 #LOADER_OPTS= -free -O2 -fp-model strict -ipo -march=core-avx2 -qopt-zmm-usage=high -fimf-arch-consistency=true
 #LIBS=-L/usr/lib/x86_64-linux-gnu -lrt -lpthread -lsz -lz -L/nasa/szip/2.1.1/lib
 
+
+F_OPTS1=-g -free -O1 -fp-model strict -march=core-avx2 -qopt-zmm-usage=high -fimf-arch-consistency=true
+F_OPTS2=-g -free -O2 -fp-model strict -march=core-avx2 -qopt-zmm-usage=high -fimf-arch-consistency=true
+LOADER_OPTS=-g -free -O2 -fp-model strict -march=core-avx2 -qopt-zmm-usage=high -fimf-arch-consistency=true
+LIBS=-L/usr/lib/x86_64-linux-gnu -lrt -lpthread -lsz -lz -L/nasa/szip/2.1.1/lib
 
 #*****************************
 # FORTRAN INTEL IFORT COMPILER Double Precision
