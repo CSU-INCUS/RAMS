@@ -21,11 +21,11 @@ integer :: ifm,icm
 
 maxarr=0
 do ngr=1,ngridsh
-   maxarr=max(maxarr,mmxp(ngr)*mmyp(ngr)*mmzp(ngr)  &
-         ,mmxp(ngr)*mmyp(ngr)*nzg*npatch &
-         ,mmxp(ngr)*mmyp(ngr)*nzs*npatch &
-         ,mmxp(ngr)*mmyp(ngr)*mmzp(ngr)*nkr &
-         ,mmxp(ngr)*mmyp(ngr)*nkppz)
+   maxarr=max(INT(maxarr,8),INT(mmxp(ngr),8)*INT(mmyp(ngr),8)*INT(mmzp(ngr),8)  &
+         ,INT(mmxp(ngr),8)*INT(mmyp(ngr),8)*INT(nzg,8)*INT(npatch,8) &
+         ,INT(mmxp(ngr),8)*INT(mmyp(ngr),8)*INT(nzs,8)*INT(npatch,8) &
+         ,INT(mmxp(ngr),8)*INT(mmyp(ngr),8)*INT(mmzp(ngr),8)*INT(nkr,8) &
+         ,INT(mmxp(ngr),8)*INT(mmyp(ngr),8)*INT(nkppz,8))
 enddo
 
 ! read stuff here

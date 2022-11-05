@@ -182,12 +182,15 @@ maxarr2=0
 maxx1=maxval(nnxp1(1:ngrids1))
 maxy1=maxval(nnyp1(1:ngrids1))
 maxz1=maxval(nnzp1(1:ngrids1))
+! max size of a 32-bit integer (INT kind=4) is ~2.1 billion.
+! convert everything to 
 do ngr=1,ngrids1
-   maxarr1=max(maxarr1,nnxp1(ngr)*nnyp1(ngr)*nnzp1(ngr)*nkr  &
-         ,nnxp1(ngr)*nnyp1(ngr)*nzg1*npatch1 &
-         ,nnxp1(ngr)*nnyp1(ngr)*nzs1*npatch1)
-   maxarr2=max(maxarr2,nnxp1(ngr)*nnyp1(ngr))
+   maxarr1=max(INT(maxarr1,8),INT(nnxp1(ngr),8)*INT(nnyp1(ngr),8)*INT(nnzp1(ngr)*nkr,8)  &
+         ,INT(nnxp1(ngr),8)*INT(nnyp1(ngr),8)*INT(nzg1,8)*INT(npatch1,8) &
+         ,INT(nnxp1(ngr),8)*INT(nnyp1(ngr),8)*INT(nzs1,8)*INT(npatch1,8))
+   maxarr2=max(INT(maxarr2,8),INT(nnxp1(ngr),8)*INT(nnyp1(ngr),8))
 enddo
+!print*, "maxarr1: ", maxarr1
 allocate (scr(maxarr1),scr1(maxarr1))
 
 !Allocate and read in grid specifications

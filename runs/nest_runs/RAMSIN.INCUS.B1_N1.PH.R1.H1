@@ -9,10 +9,10 @@
 !  Type of model run to perform
 
 !   RUNTYPE  = 'INITIAL',                      !CHANGEME                              
-   RUNTYPE  = 'MAKESFC',                       
+!   RUNTYPE  = 'MAKESFC',                       
 !   RUNTYPE  = 'MAKEVFILE',
 !   RUNTYPE  = 'MAKEHFILE',
-!   RUNTYPE  = 'HISTORY',
+   RUNTYPE  = 'HISTORY',
 !   RUNTYPE  = 'ERROR',
 
    TIMEUNIT = 'h',          ! 'h','m','s' - Time units of TIMMAX, TIMSTR
@@ -24,7 +24,7 @@
    IMONTH1  = 09,           ! Month   !CHANGEME
    IDATE1   = 09,           ! Day     !CHANGEME
    IYEAR1   = 2019,         ! Year    !CHANGEME
-   ITIME1   = 1200,         ! GMT of model TIME = 0. !CHANGEME
+   ITIME1   = 1900,         ! GMT of model TIME = 0. !CHANGEME
 
 ! Grid specifications
 
@@ -92,7 +92,7 @@
 
 ! Variable initialization input
 
-   INITIAL  = 3,             ! Initial fields - 1=horiz.homogeneous, 
+   INITIAL  = 2,             ! Initial fields - 1=horiz.homogeneous, 
                              !                  2=init from varfile
                              !                  3=init from history
 
@@ -184,7 +184,7 @@
 
 ! History start (if RUNTYPE='HISTORY')
 
-   HFILIN   = '/nobackup/swfreema/IN_PH_B1/a-A-2019-09-10-190000-head.txt',
+   HFILIN   = '/nobackup/swfreema/IN_PH_B1/a-A-2019-09-09-190000-head.txt',
                              ! Input state file name
 
 ! Analysis file input for assimilation: 1=yes, 0=no
@@ -748,7 +748,7 @@
    IASRFCE = ' ', ! Archived surface obs file name
 
 ! Header file name for history nudging files (only prefix is used)
-   VAR_HFILE = '/nobackupp19/swfreema/IN_PH_B1_N1/a-A-',
+   VAR_HFILE = '/nobackupp19/swfreema/IN_PH_B1/a-A-',
 
 ! File names and dispose flags 
 

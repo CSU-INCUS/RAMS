@@ -1,7 +1,7 @@
 #PBS -S /bin/csh
 #PBS -V
 #PBS -q devel
-#PBS -lselect=1:ncpus=128:mpiprocs=128:model=rom_ait,walltime=00:10:00
+#PBS -lselect=1:ncpus=128:mpiprocs=128:model=rom_ait,walltime=00:30:00
 #PBS -j oe
 #PBS -o /nobackupp19/swfreema/INCUS/basin_simulations/philippines_camp2ex_summer/stdout
 #PBS -N INCUS_PH_B1_N1_H1

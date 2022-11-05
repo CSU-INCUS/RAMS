@@ -649,8 +649,8 @@ maxx1=maxval(nnxp1(1:ngrids1))
 maxy1=maxval(nnyp1(1:ngrids1))
 maxz1=maxval(nnzp1(1:ngrids1))
 do ngr=1,ngrids1
-   maxarr1=max(maxarr1,nnxp1(ngr)*nnyp1(ngr)*nnzp1(ngr))
-   maxarr2=max(maxarr2,nnxp1(ngr)*nnyp1(ngr))
+   maxarr1=max(maxarr1,INT(nnxp1(ngr),8)*INT(nnyp1(ngr),8)*INT(nnzp1(ngr),8))
+   maxarr2=max(maxarr2,INT(nnxp1(ngr),8)*INT(nnyp1(ngr),8))
 enddo
 allocate (scr(maxarr1),scr1(maxarr1))
 
