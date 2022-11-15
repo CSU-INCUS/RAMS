@@ -4,34 +4,34 @@
 
 !  Simulation title (64 chars)
 
-   EXPNME   = 'RAMS_INCUS_CAMP2Ex_BASIN1',  !CHANGEME
+   EXPNME   = 'RAMS_INCUS_CONGO_BASIN1',  !CHANGEME
 
 !  Type of model run to perform
 
 !   RUNTYPE  = 'INITIAL',                      !CHANGEME                              
 !   RUNTYPE  = 'MAKESFC',                       
-   RUNTYPE  = 'MAKEVFILE',
+!   RUNTYPE  = 'MAKEVFILE',
 !   RUNTYPE  = 'MAKEHFILE',
-!   RUNTYPE  = 'HISTORY',
+   RUNTYPE  = 'HISTORY',
 !   RUNTYPE  = 'ERROR',
 
    TIMEUNIT = 'h',          ! 'h','m','s' - Time units of TIMMAX, TIMSTR
 
-   TIMMAX   = 12.,           ! Final time of simulation !CHANGEME
+   TIMMAX   = 60.,           ! Final time of simulation !CHANGEME
 
 !  Start of simulation or ISAN processing
 
    IMONTH1  = 09,           ! Month   !CHANGEME
-   IDATE1   = 10,           ! Day     !CHANGEME
-   IYEAR1   = 2019,         ! Year    !CHANGEME
+   IDATE1   = 17,           ! Day     !CHANGEME
+   IYEAR1   = 2021,         ! Year    !CHANGEME
    ITIME1   = 0000,         ! GMT of model TIME = 0. !CHANGEME
 
 ! Grid specifications
 
    NGRIDS   = 1,            ! Number of grids to run
  
-   NNXP     = 1500,        ! Number of x gridpoints !CHANGEME
-   NNYP     = 750,        ! Number of y gridpoints !CHANGEME
+   NNXP     = 800,        ! Number of x gridpoints !CHANGEME
+   NNYP     = 800,        ! Number of y gridpoints !CHANGEME
    NNZP     = 118,        ! Number of z gridpoints
    NZG      = 11,           ! Number of soil layers
    NZS      = 1,            ! Maximum number of snow layers
@@ -43,7 +43,7 @@
 ! Coarse grid specifications
 
    IHTRAN   = 1,              ! 0-Cartesian, 1-Polar stereo
-   DELTAX   = 1600.,          ! X-Y grid spacing (meters)
+   DELTAX   = 1000.,          ! X-Y grid spacing (meters)
    DELTAZ   = 100.,           ! Z grid spacing (set to 0. to use ZZ)
    DZRAT    = 1.03,           ! Vertical grid stretch ratio
    DZMAX    = 250.,          ! Maximum delta Z for vertical stretch
@@ -68,8 +68,8 @@
    NESTZ   = 0,                     ! Contort coarser grids if negative
    NSTRATZ = 1,1,3,3,3,3,2,2,2,2,1, !
                             
-   POLELAT  = 16.4,         ! If polar, latitude/longitude of pole point !CHANGEME
-   POLELON  = 125.0,        !CHANGEME
+   POLELAT  = -1.6,         ! If polar, latitude/longitude of pole point !CHANGEME
+   POLELON  = 28.0,        !CHANGEME
 
    ! Grid point on the next coarser nest where the lower southwest
    !  corner of this nest will start.
@@ -79,8 +79,8 @@
    NJNEST   = 1,0,0,0,           ! j-point
    NKNEST   = 1,1,1,1,           ! k-point
 
-   CENTLAT =   16.4, ! Center lat/lon of grids, may or !CHANGEME
-   CENTLON =  125.0, ! may not be same as pole point   !CHANGEME
+   CENTLAT =   -1.6, ! Center lat/lon of grids, may or !CHANGEME
+   CENTLON =  28.0, ! may not be same as pole point   !CHANGEME
  
    NNSTTOP  = 1,1,1,1,           ! Flag (0-no or 1-yes) if this
    NNSTBOT  = 1,1,1,1,           ! Nest goes the top or bottom of the
@@ -92,7 +92,7 @@
 
 ! Variable initialization input
 
-   INITIAL  = 2,             ! Initial fields - 1=horiz.homogeneous, 
+   INITIAL  = 3,             ! Initial fields - 1=horiz.homogeneous, 
                              !                  2=init from varfile
                              !                  3=init from history
 
@@ -100,11 +100,11 @@
    NUD_TYPE = 1,             ! =0 - no analysis nudging
                              ! =1 - nudge from varfiles
                              
-   VARFPFX  = './var',       ! Varfile prefix !CHANGEME
+   VARFPFX  = '/nobackup/swfreema/IN_CO_B1/var',       ! Varfile prefix !CHANGEME
    VWAIT1   = 0.,            ! wait between each VFILE check (s)
    VWAITTOT = 0.,            ! total wait before giving up on a VFILE (s)
    
-   NUDLAT   = 50,             ! Number of points in lateral bnd region !CHANGEME (2.5% of max(nnxp,nnyp))
+   NUDLAT   = 20,             ! Number of points in lateral bnd region !CHANGEME (2.5% of max(nnxp,nnyp))
    TNUDLAT  = 900.,          ! Nudging time scale(s) at lateral boundary
    TNUDCENT = 0.,            ! Nudging time scale(s) in center of domain
    TNUDTOP  = 900.,           ! Nudging time scale (s) at top of domain
@@ -184,12 +184,12 @@
 
 ! History start (if RUNTYPE='HISTORY')
 
-   HFILIN   = './run/hist/a-A-1991-04-26-213000-head.txt',
+   HFILIN   = '/nobackup/swfreema/IN_CO_B1/a-A-2021-09-17-180000-head.txt',
                              ! Input state file name
 
 ! Analysis file input for assimilation: 1=yes, 0=no
 
-   IPAST_SFC = 0,            ! Initialize LEAF fields from history 
+   IPAST_SFC = 1,            ! Initialize LEAF fields from history 
 
 !------------------------------------------------------------------------
    ICLOBBER = 1,             ! 0=stop if files exist, 1=overwite files
@@ -198,7 +198,7 @@
 !  Analysis file output
  
    IOUTPUT  =  1,             ! 0-no files, 1-write files
-   AFILEPREF  = '/nobackup/swfreema/IN_PH_B1/', !CHANGEME  
+   AFILEPREF  = '/nobackup/swfreema/IN_CO_B1/a', !CHANGEME  
                               ! File prefix for all analysis files
                               !   state,mean,lite,both
                               
@@ -259,10 +259,10 @@
 
 ! Input topography variables !CHANGEME (Paths)
 
-   TOPFILES = '/nobackup/swfreema/IN_PH_B1/toph', ! Path and prefix for topo files.   !CHANGEME 
-   SFCFILES = '/nobackup/swfreema/IN_PH_B1/sfch', ! Path and prefix for surface files.!CHANGEME
-   SSTFPFX  = '/nobackup/swfreema/IN_PH_B1/ssth', ! Path and prefix for sst files     !CHANGEME
-   NDVIFPFX = '/nobackup/swfreema/IN_PH_B1/ndh',  ! Path and prefix for ndni files    !CHANGEME
+   TOPFILES = '/nobackup/swfreema/IN_CO_B1/toph', ! Path and prefix for topo files.   !CHANGEME 
+   SFCFILES = '/nobackup/swfreema/IN_CO_B1/sfch', ! Path and prefix for surface files.!CHANGEME
+   SSTFPFX  = '/nobackup/swfreema/IN_CO_B1/ssth', ! Path and prefix for sst files     !CHANGEME
+   NDVIFPFX = '/nobackup/swfreema/IN_CO_B1/ndh',  ! Path and prefix for ndni files    !CHANGEME
 
    ITOPTFLG = 1,           ! 2 - Fill data in "leaf3_init"
    ISSTFLG  = 1,           ! 0 - Interpolate from coarser grid
@@ -278,8 +278,8 @@
 
    ITOPTFN  = '/nobackupp19/swfreema/rams_topo/DEM30s-h5/EL',  !CHANGEME
               '/nobackupp19/swfreema/rams_topo/DEM30s-h5/EL',  !CHANGEME
-   ISSTFN   = '/nobackupp19/swfreema/INCUS/basin_simulations/ReyV2-h5/S',      !CHANGEME
-              '/nobackupp19/swfreema/INCUS/basin_simulations/ReyV2-h5/S',      !CHANGEME
+   ISSTFN   = '/nobackupp19/swfreema/INCUS/basin_simulations/ReyV2-h5-U/S',      !CHANGEME
+              '/nobackupp19/swfreema/INCUS/basin_simulations/ReyV2-h5-U/S',      !CHANGEME
    IVEGTFN  = '/nobackupp19/swfreema/rams_topo/ogedata-h5/GE', !CHANGEME
               '/nobackupp19/swfreema/rams_topo/ogedata-h5/GE', !CHANGEME
    ISOILFN  = '/nobackupp19/swfreema/rams_topo/FAOdata-h5/FAO',!CHANGEME
@@ -738,7 +738,7 @@
 
 ! Input data file prefixes
    IDATAIN = 1,             ! dp-p files have: 0=Relhum, 1=specific humidity
-   IAPR    = '/nobackupp19/swfreema/IN_PH_B1_DP/dp-p', ! Input press level dataset
+   IAPR    = '/nobackupp19/swfreema/IN_CO_B1_DP/dp-p', ! Input press level dataset
    IARAWI  = ' ', ! Archived rawindsonde file name
    IASRFCE = ' ', ! Archived surface obs file name
 
@@ -747,7 +747,7 @@
 
 ! File names and dispose flags 
 
-   VARPFX    = '/nobackupp19/swfreema/IN_PH_B1/var',  ! isan file names prefix
+   VARPFX    = '/nobackupp19/swfreema/IN_CO_B1/var',  ! isan file names prefix
    IOFLGISZ  = 0,           ! Isen-sigz file flag: 0 = no write, 1 = write
    IOFLGVAR  = 1,           ! Var file flag: 0 = no write, 1 = write
 

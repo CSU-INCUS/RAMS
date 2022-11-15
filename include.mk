@@ -8,7 +8,7 @@ MAKE=/usr/bin/make
 #############################################################################
 # Set your RAMS root path and version number.
 #############################################################################
-RAMS_ROOT=/nobackupp19/swfreema/INCUS/basin_simulations/philippines_camp2ex_summer/rams_code/RAMS
+RAMS_ROOT=/nobackupp19/swfreema/INCUS/basin_simulations/congo_2021/rams_code/RAMS
 RAMS_VERSION=6.3.02
 
 #############################################################################
@@ -115,9 +115,9 @@ F_COMP=mpif90
 #LIBS=-L/usr/lib/x86_64-linux-gnu -lrt -lpthread -lsz -lz -L/nasa/szip/2.1.1/lib
 
 
-F_OPTS1=-g -free -O1 -fp-model strict -march=core-avx2 -qopt-zmm-usage=high -fimf-arch-consistency=true
-F_OPTS2=-g -free -O2 -fp-model strict -march=core-avx2 -qopt-zmm-usage=high -fimf-arch-consistency=true
-LOADER_OPTS=-g -free -O2 -fp-model strict -march=core-avx2 -qopt-zmm-usage=high -fimf-arch-consistency=true
+F_OPTS1=-free -O1 -fp-model strict -ipo -march=core-avx2 -qopt-zmm-usage=high -fimf-arch-consistency=true
+F_OPTS2=-free -O2 -fp-model strict -ipo -march=core-avx2 -qopt-zmm-usage=high -fimf-arch-consistency=true
+LOADER_OPTS=-free -O2 -fp-model strict -ipo -march=core-avx2 -qopt-zmm-usage=high -fimf-arch-consistency=true
 LIBS=-L/usr/lib/x86_64-linux-gnu -lrt -lpthread -lsz -lz -L/nasa/szip/2.1.1/lib
 
 #*****************************
