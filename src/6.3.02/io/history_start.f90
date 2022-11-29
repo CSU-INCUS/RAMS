@@ -12,7 +12,8 @@ use kpp_parameters, only:nkppz
 
 implicit none
 
-integer :: maxarr,ngr
+integer :: ngr
+integer(kind=8) :: maxarr
 integer :: ifm,icm
 
 ! Find maximum size of any array on history file. Allocate scratch array of
@@ -20,11 +21,11 @@ integer :: ifm,icm
 
 maxarr=0
 do ngr=1,ngridsh
-   maxarr=max(maxarr,mmxp(ngr)*mmyp(ngr)*mmzp(ngr)  &
-         ,mmxp(ngr)*mmyp(ngr)*nzg*npatch &
-         ,mmxp(ngr)*mmyp(ngr)*nzs*npatch &
-         ,mmxp(ngr)*mmyp(ngr)*mmzp(ngr)*nkr &
-         ,mmxp(ngr)*mmyp(ngr)*nkppz)
+   maxarr=max(INT(maxarr,8),INT(mmxp(ngr),8)*INT(mmyp(ngr),8)*INT(mmzp(ngr),8)  &
+         ,INT(mmxp(ngr),8)*INT(mmyp(ngr),8)*INT(nzg,8)*INT(npatch,8) &
+         ,INT(mmxp(ngr),8)*INT(mmyp(ngr),8)*INT(nzs,8)*INT(npatch,8) &
+         ,INT(mmxp(ngr),8)*INT(mmyp(ngr),8)*INT(mmzp(ngr),8)*INT(nkr,8) &
+         ,INT(mmxp(ngr),8)*INT(mmyp(ngr),8)*INT(nkppz,8))
 enddo
 
 ! read stuff here
@@ -171,7 +172,8 @@ use kpp_parameters, only:nkppz
 
 implicit none
 
-integer :: maxarr,checkhist
+integer :: checkhist
+integer(kind=8) :: maxarr
 character(len=*) :: hnamein
 
 integer :: ngr,npts,nc,nv,nvh,ndims,idims(4)

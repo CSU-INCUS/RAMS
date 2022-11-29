@@ -26,7 +26,7 @@ integer, parameter ::  &
  ,maxvars      = 1000  & ! Max # of variables (3d + 2d + leaf)
  ,maxrec       = 1000  & ! Max record length (lines) of namelists
  ,maxvalues    = 300   & ! Max # of tokens to be read in from namelists
- ,maxmach      = 2048  & ! Max # of parallel processors
+ ,maxmach      = 20480  & ! Max # of parallel processors
  ,maxlite      = 99    & ! Max # of lite variables
  ,maxsstfiles  = 2000  & ! Max # of SST total files
  ,maxndvifiles = 2000  & ! Max # of NDVI total files
