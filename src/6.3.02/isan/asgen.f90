@@ -571,8 +571,9 @@ use node_mod
 implicit none
 
 integer :: nnud,ngrids1,nzg1,nzs1,npatch1,nvegpat1,ierr,ng,nc &
-           ,ie,maxarr1,maxarr2,ngr,maxx1,maxy1,maxz1,npts,nv &
+           ,ie,ngr,maxx1,maxy1,maxz1,npts,nv &
            ,ihtran1,nzpg1,checkhist,nvloopstart,dim_type
+integer(kind=8) :: maxarr1, maxarr2
 integer, external :: cio_i,cio_f
 integer,save :: iunhd=11
 integer, allocatable, dimension(:) :: nnxp1,nnyp1,nnzp1
@@ -648,8 +649,8 @@ maxx1=maxval(nnxp1(1:ngrids1))
 maxy1=maxval(nnyp1(1:ngrids1))
 maxz1=maxval(nnzp1(1:ngrids1))
 do ngr=1,ngrids1
-   maxarr1=max(maxarr1,nnxp1(ngr)*nnyp1(ngr)*nnzp1(ngr))
-   maxarr2=max(maxarr2,nnxp1(ngr)*nnyp1(ngr))
+   maxarr1=max(maxarr1,INT(nnxp1(ngr),8)*INT(nnyp1(ngr),8)*INT(nnzp1(ngr),8))
+   maxarr2=max(maxarr2,INT(nnxp1(ngr),8)*INT(nnyp1(ngr),8))
 enddo
 allocate (scr(maxarr1),scr1(maxarr1))
 

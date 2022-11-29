@@ -18,8 +18,9 @@ use micro_prm, only:nkr
 implicit none
 
 integer :: ngrids1,nzg1,nzs1,npatch1,nvegpat1,ierr,ng,nc &
-           ,ie,maxarr1,maxarr2,ngr,maxx1,maxy1,maxz1,npts,nv,nvh,nzpg1 &
+           ,ie,ngr,maxx1,maxy1,maxz1,npts,nv,nvh,nzpg1 &
            ,iyearh,imonthh,idateh,itimeh,ihtran1,checkhist,inithisflg,goahead
+integer(kind=8):: maxarr1, maxarr2
 integer, external :: cio_i,cio_f
 integer,save :: iunhd=11
 integer, allocatable, dimension(:) :: nnxp1,nnyp1,nnzp1
@@ -182,10 +183,10 @@ maxx1=maxval(nnxp1(1:ngrids1))
 maxy1=maxval(nnyp1(1:ngrids1))
 maxz1=maxval(nnzp1(1:ngrids1))
 do ngr=1,ngrids1
-   maxarr1=max(maxarr1,nnxp1(ngr)*nnyp1(ngr)*nnzp1(ngr)*nkr  &
-         ,nnxp1(ngr)*nnyp1(ngr)*nzg1*npatch1 &
-         ,nnxp1(ngr)*nnyp1(ngr)*nzs1*npatch1)
-   maxarr2=max(maxarr2,nnxp1(ngr)*nnyp1(ngr))
+   maxarr1=max(INT(maxarr1,8),INT(nnxp1(ngr),8)*INT(nnyp1(ngr),8)*INT(nnzp1(ngr)*nkr,8)  &
+         ,INT(nnxp1(ngr),8)*INT(nnyp1(ngr),8)*INT(nzg1,8)*INT(npatch1,8) &
+         ,INT(nnxp1(ngr),8)*INT(nnyp1(ngr),8)*INT(nzs1,8)*INT(npatch1,8))
+   maxarr2=max(INT(maxarr2,8),INT(nnxp1(ngr),8)*INT(nnyp1(ngr),8))
 enddo
 allocate (scr(maxarr1),scr1(maxarr1))
 
