@@ -29,7 +29,7 @@ implicit none
   !Saleeby(2016)
   !Increment memory buffer size here if you add RAMSIN Namelist variables.
   !Add to the appropriate section below as (#-of-them * arraysize).
-  nwords = 221 * 1                 & !single values
+  nwords = 225 * 1                 & !single values
          +   1 * 8                 & !micro (8-hydromet types for gnu)
          +   3 * aerocat           & !micro (number aerosol species)
          +  44 * maxgrds           & !grid-dependent (max grids)
@@ -342,7 +342,11 @@ implicit none
     CALL par_put_int   (ITRKDUST,1)
     CALL par_put_int   (ITRKDUSTIFN,1)
     CALL par_put_int   (ICEPROCS,1)
-    CALL par_put_int   (IAGGFUNC,1)
+    CALL par_put_int   (IAGGFUNC4,1)
+    CALL par_put_int   (IAGGFUNC5,1)
+    CALL par_put_int   (IAGGFUNC6,1)
+    CALL par_put_int   (IAGGFUNC7,1)
+    CALL par_put_int   (IAGGFUNC8,1)
     CALL par_put_float (PSAAGGVAL,1)
 
     ! $MODEL_SOUND namelist group
@@ -685,7 +689,11 @@ implicit none
     CALL par_get_int   (ITRKDUST,1)
     CALL par_get_int   (ITRKDUSTIFN,1)
     CALL par_get_int   (ICEPROCS,1)
-    CALL par_get_int   (IAGGFUNC,1)
+    CALL par_get_int   (IAGGFUNC4,1)
+    CALL par_get_int   (IAGGFUNC5,1)
+    CALL par_get_int   (IAGGFUNC6,1)
+    CALL par_get_int   (IAGGFUNC7,1)
+    CALL par_get_int   (IAGGFUNC8,1)
     CALL par_get_float (PSAAGGVAL,1)
 
     ! $MODEL_SOUND namelist group

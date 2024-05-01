@@ -609,9 +609,12 @@ if (jnmb(2) .ge. 1) then
     endif
    enddo
 endif
+
+!iaggfunc flags set to 0 to use old version, from V0 runs
+
 ! 4 = pp,ps,pa
 if (jnmb(5) .ge. 1) then
-   if (iaggfunc .eq. 4) then !AGG4
+   if (iaggfunc4 .eq. 1) then !AGG4
       do k = k1(3),k2(3)
          tagg = tx(k,3)
          if (tagg <= -50.0) then
@@ -638,7 +641,7 @@ if (jnmb(5) .ge. 1) then
    endif
 
 ! 5 = ss,sa
-   if (iaggfunc .eq. 4) then !AGG4
+   if (iaggfunc5 .eq. 1) then !AGG4
 	   do k = k1(4),k2(4)
 	      tagg = tx(k,4)
 	      if (tagg <= -50.0) then
@@ -665,7 +668,7 @@ if (jnmb(5) .ge. 1) then
    endif
 
 ! 6 = aa   
-   if (iaggfunc .eq. 4) then !AGG4
+   if (iaggfunc6 .eq. 1) then !AGG4
 	   do k = k1(5),k2(5)
 	    if (rx(k,5) .ge. rxmin) then
 	      tagg = tx(k,5)
@@ -700,7 +703,7 @@ endif
 
 ! 7 = pg,sg,ag,gg,gh
 if (jnmb(6) .ge. 1) then
-	if (iaggfunc .eq. 4) then !AGG4
+	if (iaggfunc7 .eq. 1) then !AGG4
 	   do k = k1(6),k2(6)
 	      if (qr(k,6) .gt. 0.) then
 	         eff(k,7) = 1.0
@@ -733,7 +736,7 @@ endif
 
 ! 8 = ph,sh,ah,gh
 if (jnmb(7) .ge. 1) then
-	if (iaggfunc .eq. 4) then !AGG4
+	if (iaggfunc8 .eq. 1) then !AGG4
 	   do k = k1(7),k2(7)
 	    if (rx(k,7) .ge. rxmin) then
 	      if (qr(k,7) .gt. 0.) then

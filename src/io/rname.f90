@@ -25,7 +25,7 @@ character(len=*) :: group,vr,cc
 real :: ff
 integer :: ii,nv
 integer :: inrflg
-integer, parameter ::nvgrid=37,nvstrt=78,nvindat=155,nvsound=10
+integer, parameter ::nvgrid=37,nvstrt=78,nvindat=159,nvsound=10
 integer ::  igrids(nvgrid),istart(nvstrt),iindat(nvindat),isound(nvsound)
 character(len=16) :: grids(nvgrid),start(nvstrt),indat(nvindat),sound(nvsound)
 data igrids/nvgrid*0/,istart/nvstrt*0/,iindat/nvindat*0/,isound/nvsound*0/
@@ -79,7 +79,8 @@ DATA INDAT/  &
      ,'SALTJ_MAX','SALTS_MAX','IAEROLBC','ICO2LBC','BCTAU','IAERO_CHEM'  &
      ,'AERO_EPSILON','AERO_MEDRAD','ITRKEPSILON','ITRKDUST'              &
      ,'ITRKDUSTIFN','SCMTIME','ISCMX','ISCMY','FRACSAT','IABCARB'        &
-     ,'ABC1_MAX','ABC2_MAX','IAGGFUNC','PSAAGGVAL'/
+     ,'ABC1_MAX','ABC2_MAX','IAGGFUNC4','IAGGFUNC5','IAGGFUNC6'          &
+     ,'IAGGFUNC7','IAGGFUNC8','PSAAGGVAL'/
 DATA SOUND/  &
       'IPSFLG','ITSFLG','IRTSFLG','IUSFLG','HS','PS','TS','RTS','US','VS'/
 
@@ -391,7 +392,11 @@ IF(GROUP.EQ.'$MODEL_OPTIONS') THEN
  IF(VR.EQ.'ITRKEPSILON')  CALL varseti (VR,ITRKEPSILON,NV,1,II,0,1)
  IF(VR.EQ.'ITRKDUST')     CALL varseti (VR,ITRKDUST,NV,1,II,0,1)
  IF(VR.EQ.'ITRKDUSTIFN')  CALL varseti (VR,ITRKDUSTIFN,NV,1,II,0,1)
- IF(VR.EQ.'IAGGFUNC')   CALL varseti (VR,IAGGFUNC,NV,1,II,0,5)
+ IF(VR.EQ.'IAGGFUNC4')   CALL varseti (VR,IAGGFUNC4,NV,1,II,0,5)
+ IF(VR.EQ.'IAGGFUNC5')   CALL varseti (VR,IAGGFUNC5,NV,1,II,0,5)
+ IF(VR.EQ.'IAGGFUNC6')   CALL varseti (VR,IAGGFUNC6,NV,1,II,0,5)
+ IF(VR.EQ.'IAGGFUNC7')   CALL varseti (VR,IAGGFUNC7,NV,1,II,0,5)
+ IF(VR.EQ.'IAGGFUNC8')   CALL varseti (VR,IAGGFUNC8,NV,1,II,0,5)
  IF(VR.EQ.'PSAAGGVAL')    CALL varsetf (VR,PSAAGGVAL,NV,1,FF,0.,1.)
 ENDIF
 
@@ -554,7 +559,11 @@ WRITE(6,'(100(3(A19,I5)/))')         &
  ,'ITRKEPSILON=',ITRKEPSILON         &
  ,'ITRKDUST=',ITRKDUST               &
  ,'ITRKDUSTIFN=',ITRKDUSTIFN         &
- ,'IAGGFUNC=',IAGGFUNC           &
+ ,'IAGGFUNC=',IAGGFUNC4              &
+ ,'IAGGFUNC=',IAGGFUNC5              &
+ ,'IAGGFUNC=',IAGGFUNC6              &
+ ,'IAGGFUNC=',IAGGFUNC7              &
+ ,'IAGGFUNC=',IAGGFUNC8              &
  ,'IPSFLG=',IPSFLG                   &
  ,'ITSFLG=',ITSFLG                   &
  ,'IRTSFLG=',IRTSFLG                 &

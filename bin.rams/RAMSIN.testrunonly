@@ -622,6 +622,25 @@
    ITRKEPSILON = 1,        ! Tracking aerosol solubility for regeneration
    ITRKDUST    = 1,        ! Tracking dust sub-species within hydrometeors
    ITRKDUSTIFN = 1,        ! Tracing dust that served as ice nuclei
+ !---- Microphysics sensitivity tests ----------
+ 
+   IAGGFUNC4 = 1,  ! Flag for how to calculate aggregation efficiency between pp,ps,pa 
+                   ! 0 - Old calculation from V0 runs
+                   ! 1 - New function from Saleeby 'AGG4'
+   IAGGFUNC5 = 1,  ! Flag for how to calculate aggregation efficiency between ss,aa 
+                   ! 0 - Old calculation from V0 runs
+                   ! 1 - New function from Saleeby 'AGG4'
+   IAGGFUNC6 = 1,  ! Flag for how to calculate aggregation efficiency between aa 
+                   ! 0 - Old calculation from V0 runs
+                   ! 1 - New function from Saleeby 'AGG4'
+   IAGGFUNC7 = 1,  ! Flag for how to calculate aggregation efficiency between pg,sg,ag,gg 
+                   ! 0 - Old calculation from V0 runs
+                   ! 1 - New function from Saleeby 'AGG4'
+   IAGGFUNC8 = 1,  ! Flag for how to calculate aggregation efficiency between gh,sh,ah,gh 
+                   ! 0 - Old calculation from V0 runs
+                   ! 1 - New function from Saleeby 'AGG4'
+				   
+   PSAAGGVAL = 0.2,  ! Minimum aggregation efficiency for AGGFUNC variables = 0
 
  $END
 
