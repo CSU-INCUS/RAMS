@@ -625,22 +625,23 @@
  !---- Microphysics sensitivity tests ----------
  
    IAGGFUNC4 = 1,  ! Flag for how to calculate aggregation efficiency between pp,ps,pa 
-                   ! 0 - Old calculation from V0 runs
-                   ! 1 - New function from Saleeby 'AGG4'
    IAGGFUNC5 = 1,  ! Flag for how to calculate aggregation efficiency between ss,aa 
-                   ! 0 - Old calculation from V0 runs
-                   ! 1 - New function from Saleeby 'AGG4'
    IAGGFUNC6 = 1,  ! Flag for how to calculate aggregation efficiency between aa 
-                   ! 0 - Old calculation from V0 runs
-                   ! 1 - New function from Saleeby 'AGG4'
    IAGGFUNC7 = 1,  ! Flag for how to calculate aggregation efficiency between pg,sg,ag,gg 
-                   ! 0 - Old calculation from V0 runs
-                   ! 1 - New function from Saleeby 'AGG4'
    IAGGFUNC8 = 1,  ! Flag for how to calculate aggregation efficiency between gh,sh,ah,gh 
                    ! 0 - Old calculation from V0 runs
                    ! 1 - New function from Saleeby 'AGG4'
+		   ! 2 - New function but opposing a minimum value
 				   
-   PSAAGGVAL = 0.2,  ! Minimum aggregation efficiency for AGGFUNC variables = 0
+   PSAAGGVAL = 0.2,  ! Maximum aggregation efficiency for AGGFUNC variables = 0 (away from peak temperatures)
+   					 ! Setting to 0 turns off aggregation
+					 
+   AGGMIN4 = 0.3, 	!For IAGGFUNC = 1, minimum allowed value of aggregation
+   AGGMIN5 = 0.3,
+   AGGMIN6 = 0.3,
+   AGGMIN7 = 0.3,
+   AGGMIN8 = 0.3,
+
 
  $END
 

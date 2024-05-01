@@ -25,7 +25,7 @@ character(len=*) :: group,vr,cc
 real :: ff
 integer :: ii,nv
 integer :: inrflg
-integer, parameter ::nvgrid=37,nvstrt=78,nvindat=159,nvsound=10
+integer, parameter ::nvgrid=37,nvstrt=78,nvindat=164,nvsound=10
 integer ::  igrids(nvgrid),istart(nvstrt),iindat(nvindat),isound(nvsound)
 character(len=16) :: grids(nvgrid),start(nvstrt),indat(nvindat),sound(nvsound)
 data igrids/nvgrid*0/,istart/nvstrt*0/,iindat/nvindat*0/,isound/nvsound*0/
@@ -80,7 +80,8 @@ DATA INDAT/  &
      ,'AERO_EPSILON','AERO_MEDRAD','ITRKEPSILON','ITRKDUST'              &
      ,'ITRKDUSTIFN','SCMTIME','ISCMX','ISCMY','FRACSAT','IABCARB'        &
      ,'ABC1_MAX','ABC2_MAX','IAGGFUNC4','IAGGFUNC5','IAGGFUNC6'          &
-     ,'IAGGFUNC7','IAGGFUNC8','PSAAGGVAL'/
+     ,'IAGGFUNC7','IAGGFUNC8','PSAAGGVAL','AGGMIN4','AGGMIN5','AGGMIN6'  &
+     ,'AGGMIN7','AGGMIN8'/
 DATA SOUND/  &
       'IPSFLG','ITSFLG','IRTSFLG','IUSFLG','HS','PS','TS','RTS','US','VS'/
 
@@ -398,6 +399,11 @@ IF(GROUP.EQ.'$MODEL_OPTIONS') THEN
  IF(VR.EQ.'IAGGFUNC7')   CALL varseti (VR,IAGGFUNC7,NV,1,II,0,5)
  IF(VR.EQ.'IAGGFUNC8')   CALL varseti (VR,IAGGFUNC8,NV,1,II,0,5)
  IF(VR.EQ.'PSAAGGVAL')    CALL varsetf (VR,PSAAGGVAL,NV,1,FF,0.,1.)
+ IF(VR.EQ.'AGGMIN4')    CALL varsetf (VR,AGGMIN4,NV,1,FF,0.,2.)
+ IF(VR.EQ.'AGGMIN5')    CALL varsetf (VR,AGGMIN5,NV,1,FF,0.,2.)
+ IF(VR.EQ.'AGGMIN6')    CALL varsetf (VR,AGGMIN6,NV,1,FF,0.,2.)
+ IF(VR.EQ.'AGGMIN7')    CALL varsetf (VR,AGGMIN7,NV,1,FF,0.,2.)
+ IF(VR.EQ.'AGGMIN8')    CALL varsetf (VR,AGGMIN8,NV,1,FF,0.,2.)
 ENDIF
 
 IF(GROUP.EQ.'$MODEL_SOUND') THEN
@@ -629,6 +635,11 @@ WRITE(6,'(100(3(A15,E11.4)/))')      &
  ,'GPARM=',GPARM                     &
  ,'HPARM=',HPARM                     &
  ,'PSAAGGVAL=',PSAAGGVAL             &
+ ,'AGGMIN4=',AGGMIN4                 &
+ ,'AGGMIN5=',AGGMIN5                 &
+ ,'AGGMIN6=',AGGMIN6                 &
+ ,'AGGMIN7=',AGGMIN7                 &
+ ,'AGGMIN8=',AGGMIN8                 &
  ,'CIN_MAX=',CIN_MAX                 &
  ,'CIN_SH=',CIN_SH                   &
  ,'CCN_SH=',CCN_SH                   &

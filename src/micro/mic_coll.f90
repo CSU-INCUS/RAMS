@@ -611,10 +611,9 @@ if (jnmb(2) .ge. 1) then
 endif
 
 !iaggfunc flags set to 0 to use old version, from V0 runs
-
 ! 4 = pp,ps,pa
 if (jnmb(5) .ge. 1) then
-   if (iaggfunc4 .eq. 1) then !AGG4
+   if (iaggfunc4 .ge. 1) then !AGG4
       do k = k1(3),k2(3)
          tagg = tx(k,3)
          if (tagg <= -50.0) then
@@ -626,7 +625,11 @@ if (jnmb(5) .ge. 1) then
            if ( (tagg <= temps(etmp)) .and. (tagg >= temps(etmp+1)) )then 
              wt1=abs( (tagg-temps(etmp)) / (temps(etmp)-temps(etmp+1)) )
              wt2=1.0-wt1
-             eff(k,4) = wt2*efftemp(etmp) + wt1*efftemp(etmp+1)
+			 if (iaggfunc4 .eq. 2) then
+             	eff(k,4) = max(aggmin4,(wt2*efftemp(etmp) + wt1*efftemp(etmp+1)))
+			 else !should be iaggfunc4=1, but invalid numbers will still lead to this as it's current default
+				eff(k,4) = wt2*efftemp(etmp) + wt1*efftemp(etmp+1)
+			 endif
            endif
          enddo
       enddo 
@@ -641,7 +644,7 @@ if (jnmb(5) .ge. 1) then
    endif
 
 ! 5 = ss,sa
-   if (iaggfunc5 .eq. 1) then !AGG4
+   if (iaggfunc5 .ge. 1) then !AGG4
 	   do k = k1(4),k2(4)
 	      tagg = tx(k,4)
 	      if (tagg <= -50.0) then
@@ -653,7 +656,11 @@ if (jnmb(5) .ge. 1) then
 	        if ( (tagg <= temps(etmp)) .and. (tagg >= temps(etmp+1)) )then
 	          wt1=abs( (tagg-temps(etmp)) / (temps(etmp)-temps(etmp+1)) )
 	          wt2=1.0-wt1
-	          eff(k,5) = wt2*efftemp(etmp) + wt1*efftemp(etmp+1)
+			  if (iaggfunc5 .eq.2) then
+				  eff(k,5) = max(aggmin5,(wt2*efftemp(etmp) + wt1*efftemp(etmp+1)))
+			  else
+	          	eff(k,5) = wt2*efftemp(etmp) + wt1*efftemp(etmp+1)
+			  endif
 	        endif
 	      enddo
 	   enddo
@@ -668,7 +675,7 @@ if (jnmb(5) .ge. 1) then
    endif
 
 ! 6 = aa   
-   if (iaggfunc6 .eq. 1) then !AGG4
+   if (iaggfunc6 .ge. 1) then !AGG4
 	   do k = k1(5),k2(5)
 	    if (rx(k,5) .ge. rxmin) then
 	      tagg = tx(k,5)
@@ -681,7 +688,11 @@ if (jnmb(5) .ge. 1) then
 	        if ( (tagg <= temps(etmp)) .and. (tagg >= temps(etmp+1)) )then
 	          wt1=abs( (tagg-temps(etmp)) / (temps(etmp)-temps(etmp+1)) )
 	          wt2=1.0-wt1
-	          eff(k,6) = wt2*efftemp(etmp) + wt1*efftemp(etmp+1)
+			  if (iaggfunc6 .eq. 2) then
+	          	  eff(k,6) = max(aggmin6,(wt2*efftemp(etmp) + wt1*efftemp(etmp+1)))
+		  	  else
+				  eff(k,6) = wt2*efftemp(etmp) + wt1*efftemp(etmp+1)
+		      endif
 	        endif
 	      enddo
 	    endif
@@ -703,7 +714,7 @@ endif
 
 ! 7 = pg,sg,ag,gg,gh
 if (jnmb(6) .ge. 1) then
-	if (iaggfunc7 .eq. 1) then !AGG4
+	if (iaggfunc7 .ge. 1) then !AGG4
 	   do k = k1(6),k2(6)
 	      if (qr(k,6) .gt. 0.) then
 	         eff(k,7) = 1.0
@@ -718,7 +729,11 @@ if (jnmb(6) .ge. 1) then
 	           if ( (tagg <= temps(etmp)) .and. (tagg >= temps(etmp+1)) )then
 	             wt1=abs( (tagg-temps(etmp)) / (temps(etmp)-temps(etmp+1)) )
 	             wt2=1.0-wt1
-	             eff(k,7) = wt2*efftemp(etmp) + wt1*efftemp(etmp+1)
+	   			 if (iaggfunc7 .eq. 2) then
+					 eff(k,7) = max(aggmin7,(wt2*efftemp(etmp) + wt1*efftemp(etmp+1)))
+	   		  	 else
+					 eff(k,7) = wt2*efftemp(etmp) + wt1*efftemp(etmp+1)
+	   		     endif
 	           endif
 	         enddo
 	      endif
@@ -736,7 +751,7 @@ endif
 
 ! 8 = ph,sh,ah,gh
 if (jnmb(7) .ge. 1) then
-	if (iaggfunc8 .eq. 1) then !AGG4
+	if (iaggfunc8 .ge. 1) then !AGG4
 	   do k = k1(7),k2(7)
 	    if (rx(k,7) .ge. rxmin) then
 	      if (qr(k,7) .gt. 0.) then
@@ -752,7 +767,11 @@ if (jnmb(7) .ge. 1) then
 	           if ( (tagg <= temps(etmp)) .and. (tagg >= temps(etmp+1)) )then
 	             wt1=abs( (tagg-temps(etmp)) / (temps(etmp)-temps(etmp+1)) )
 	             wt2=1.0-wt1
-	             eff(k,8) = wt2*efftemp(etmp) + wt1*efftemp(etmp+1)
+				 if (iaggfunc8 .eq. 2)then
+					 eff(k,8) = max(aggmin8,(wt2*efftemp(etmp) + wt1*efftemp(etmp+1)))
+				 else
+					 eff(k,8) = wt2*efftemp(etmp) + wt1*efftemp(etmp+1)
+				 endif
 	           endif
 	         enddo
 	      endif

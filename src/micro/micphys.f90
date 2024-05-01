@@ -51,7 +51,7 @@ real :: cparm,dparm,rparm,pparm,sparm,aparm,gparm,hparm         &
        ,d1ecr,d2ecr,d3ecr,r3ecr                                 &
        ,colf,pi4dt,sedtime0,sedtime1                            &
        ,dimin,diminx,dimax,rimin,rimax,dieci,rieci,scmtime      &
-       ,psaaggval
+       ,psaaggval,aggmin4,aggmin5,aggmin6,aggmin7,aggmin8
 
 real, dimension(ncat)  :: emb0,emb1,gnu,parm,emb0log,emb1log,dict
 real, dimension(nhcat) :: shape,cfmas,pwmas,cfvt,pwvt,dpsmi,cfden,pwden  &
