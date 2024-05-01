@@ -32,7 +32,7 @@ integer :: idiffperts
 integer :: level,icloud,idriz,irain,ipris,isnow,iaggr,igraup,ihail      &
   ,irime,iplaws,iaerosol,idust,idustloft,iabcarb,isalt,iaerorad,iifn    &
   ,imbudget,isedim,itrkepsilon,itrkdust,itrkdustifn,iaerodep,icheckmic  &
-  ,iaeroprnt,iaerohist,iifn_formula,iscm,iscmx,iscmy
+  ,iaeroprnt,iaerohist,iifn_formula,iscm,iscmx,iscmy,iaggfunc
 
 integer, dimension(maxgrds) :: iaerolbc,ico2lbc
 real, dimension(maxgrds) :: bctau
@@ -49,7 +49,8 @@ real :: cparm,dparm,rparm,pparm,sparm,aparm,gparm,hparm         &
        ,d1min,d1max,d2min,d2max,d3min,d3minx,d3max,r3min,r3max  &
        ,d1ecr,d2ecr,d3ecr,r3ecr                                 &
        ,colf,pi4dt,sedtime0,sedtime1                            &
-       ,dimin,diminx,dimax,rimin,rimax,dieci,rieci,scmtime
+       ,dimin,diminx,dimax,rimin,rimax,dieci,rieci,scmtime      &
+       ,psaaggval
 
 real, dimension(ncat)  :: emb0,emb1,gnu,parm,emb0log,emb1log,dict
 real, dimension(nhcat) :: shape,cfmas,pwmas,cfvt,pwvt,dpsmi,cfden,pwden  &

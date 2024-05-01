@@ -609,108 +609,163 @@ if (jnmb(2) .ge. 1) then
     endif
    enddo
 endif
-
 ! 4 = pp,ps,pa
 if (jnmb(5) .ge. 1) then
-   do k = k1(3),k2(3)
-      tagg = tx(k,3)
-      if (tagg <= -50.0) then
-        tagg = -50.0
-      elseif (tagg >= 0.0) then
-        tagg = 0.0
-      endif
-      do etmp=1,11
-        if ( (tagg <= temps(etmp)) .and. (tagg >= temps(etmp+1)) )then 
-          wt1=abs( (tagg-temps(etmp)) / (temps(etmp)-temps(etmp+1)) )
-          wt2=1.0-wt1
-          eff(k,4) = wt2*efftemp(etmp) + wt1*efftemp(etmp+1)
-        endif
-      enddo
-   enddo
+   if (iaggfunc .eq. 4) then !AGG4
+      do k = k1(3),k2(3)
+         tagg = tx(k,3)
+         if (tagg <= -50.0) then
+           tagg = -50.0
+         elseif (tagg >= 0.0) then
+           tagg = 0.0
+         endif
+         do etmp=1,11
+           if ( (tagg <= temps(etmp)) .and. (tagg >= temps(etmp+1)) )then 
+             wt1=abs( (tagg-temps(etmp)) / (temps(etmp)-temps(etmp+1)) )
+             wt2=1.0-wt1
+             eff(k,4) = wt2*efftemp(etmp) + wt1*efftemp(etmp+1)
+           endif
+         enddo
+      enddo 
+	else  ! old aggregation formula
+	   do k = k1(3),k2(3)
+	      if (abs(tx(k,3)+14.) .le. 2.) then
+	         eff(k,4) = 1.4
+	      else
+	         eff(k,4) = min(psaaggval,10. ** (0.035 * tx(k,3) - 0.7))
+	      endif
+	   enddo
+   endif
 
 ! 5 = ss,sa
-   do k = k1(4),k2(4)
-      tagg = tx(k,4)
-      if (tagg <= -50.0) then
-        tagg = -50.0
-      elseif (tagg >= 0.0) then
-        tagg = 0.0
-      endif
-      do etmp=1,11
-        if ( (tagg <= temps(etmp)) .and. (tagg >= temps(etmp+1)) )then
-          wt1=abs( (tagg-temps(etmp)) / (temps(etmp)-temps(etmp+1)) )
-          wt2=1.0-wt1
-          eff(k,5) = wt2*efftemp(etmp) + wt1*efftemp(etmp+1)
-        endif
-      enddo
-   enddo
+   if (iaggfunc .eq. 4) then !AGG4
+	   do k = k1(4),k2(4)
+	      tagg = tx(k,4)
+	      if (tagg <= -50.0) then
+	        tagg = -50.0
+	      elseif (tagg >= 0.0) then
+	        tagg = 0.0
+	      endif
+	      do etmp=1,11
+	        if ( (tagg <= temps(etmp)) .and. (tagg >= temps(etmp+1)) )then
+	          wt1=abs( (tagg-temps(etmp)) / (temps(etmp)-temps(etmp+1)) )
+	          wt2=1.0-wt1
+	          eff(k,5) = wt2*efftemp(etmp) + wt1*efftemp(etmp+1)
+	        endif
+	      enddo
+	   enddo
+    else !old aggregation formula
+	   do k = k1(4),k2(4)
+	      if (abs(tx(k,4)+14.) .le. 2.) then
+	         eff(k,5) = 1.4
+	      else
+	         eff(k,5) = min(psaaggval,10. ** (0.035 * tx(k,4) - 0.7))
+	      endif
+	   enddo
+   endif
 
-! 6 = aa
-   do k = k1(5),k2(5)
-    if (rx(k,5) .ge. rxmin) then
-      tagg = tx(k,5)
-      if (tagg <= -50.0) then
-        tagg = -50.0
-      elseif (tagg >= 0.0) then
-        tagg = 0.0
-      endif
-      do etmp=1,11
-        if ( (tagg <= temps(etmp)) .and. (tagg >= temps(etmp+1)) )then
-          wt1=abs( (tagg-temps(etmp)) / (temps(etmp)-temps(etmp+1)) )
-          wt2=1.0-wt1
-          eff(k,6) = wt2*efftemp(etmp) + wt1*efftemp(etmp+1)
-        endif
-      enddo
-    endif
-   enddo
+! 6 = aa   
+   if (iaggfunc .eq. 4) then !AGG4
+	   do k = k1(5),k2(5)
+	    if (rx(k,5) .ge. rxmin) then
+	      tagg = tx(k,5)
+	      if (tagg <= -50.0) then
+	        tagg = -50.0
+	      elseif (tagg >= 0.0) then
+	        tagg = 0.0
+	      endif
+	      do etmp=1,11
+	        if ( (tagg <= temps(etmp)) .and. (tagg >= temps(etmp+1)) )then
+	          wt1=abs( (tagg-temps(etmp)) / (temps(etmp)-temps(etmp+1)) )
+	          wt2=1.0-wt1
+	          eff(k,6) = wt2*efftemp(etmp) + wt1*efftemp(etmp+1)
+	        endif
+	      enddo
+	    endif
+	   enddo
+    else !old aggregation formula
+ 	   do k = k1(5),k2(5)
+ 	    if (rx(k,5) .ge. rxmin) then
+ 	      if (abs(tx(k,5)+14.) .le. 2.) then
+ 	         eff(k,6) = 1.4
+ 	      elseif (tx(k,5) .ge. -1.) then
+ 	         eff(k,6) = 1.
+ 	      else
+ 	         eff(k,6) = min(psaaggval,10. ** (0.035 * tx(k,5) - 0.7))
+ 	      endif
+ 	    endif
+ 	   enddo
+    endif   
 endif
 
 ! 7 = pg,sg,ag,gg,gh
 if (jnmb(6) .ge. 1) then
-   do k = k1(6),k2(6)
-      if (qr(k,6) .gt. 0.) then
-         eff(k,7) = 1.0
-      else
-         tagg = tx(k,6)
-         if (tagg <= -50.0) then
-           tagg = -50.0
-         elseif (tagg >= 0.0) then
-           tagg = 0.0
-         endif
-         do etmp=1,11
-           if ( (tagg <= temps(etmp)) .and. (tagg >= temps(etmp+1)) )then
-             wt1=abs( (tagg-temps(etmp)) / (temps(etmp)-temps(etmp+1)) )
-             wt2=1.0-wt1
-             eff(k,7) = wt2*efftemp(etmp) + wt1*efftemp(etmp+1)
-           endif
-         enddo
-      endif
-   enddo
+	if (iaggfunc .eq. 4) then !AGG4
+	   do k = k1(6),k2(6)
+	      if (qr(k,6) .gt. 0.) then
+	         eff(k,7) = 1.0
+	      else
+	         tagg = tx(k,6)
+	         if (tagg <= -50.0) then
+	           tagg = -50.0
+	         elseif (tagg >= 0.0) then
+	           tagg = 0.0
+	         endif
+	         do etmp=1,11
+	           if ( (tagg <= temps(etmp)) .and. (tagg >= temps(etmp+1)) )then
+	             wt1=abs( (tagg-temps(etmp)) / (temps(etmp)-temps(etmp+1)) )
+	             wt2=1.0-wt1
+	             eff(k,7) = wt2*efftemp(etmp) + wt1*efftemp(etmp+1)
+	           endif
+	         enddo
+	      endif
+	   enddo
+    else !old aggregation formula
+	    do k = k1(6),k2(6)
+	       if (qr(k,6) .gt. 0.) then
+	          eff(k,7) = 1.0
+	       else
+	          eff(k,7) = min(psaaggval,10. ** (0.035 * tx(k,6) - 0.7))
+	       endif
+	    enddo	
+	endif  
 endif
 
 ! 8 = ph,sh,ah,gh
 if (jnmb(7) .ge. 1) then
-   do k = k1(7),k2(7)
-    if (rx(k,7) .ge. rxmin) then
-      if (qr(k,7) .gt. 0.) then
-         eff(k,8) = 1.0
-      else
-         tagg = tx(k,7)
-         if (tagg <= -50.0) then
-           tagg = -50.0
-         elseif (tagg >= 0.0) then
-           tagg = 0.0
-         endif
-         do etmp=1,11
-           if ( (tagg <= temps(etmp)) .and. (tagg >= temps(etmp+1)) )then
-             wt1=abs( (tagg-temps(etmp)) / (temps(etmp)-temps(etmp+1)) )
-             wt2=1.0-wt1
-             eff(k,8) = wt2*efftemp(etmp) + wt1*efftemp(etmp+1)
-           endif
-         enddo
-      endif
-    endif
-   enddo
+	if (iaggfunc .eq. 4) then !AGG4
+	   do k = k1(7),k2(7)
+	    if (rx(k,7) .ge. rxmin) then
+	      if (qr(k,7) .gt. 0.) then
+	         eff(k,8) = 1.0
+	      else
+	         tagg = tx(k,7)
+	         if (tagg <= -50.0) then
+	           tagg = -50.0
+	         elseif (tagg >= 0.0) then
+	           tagg = 0.0
+	         endif
+	         do etmp=1,11
+	           if ( (tagg <= temps(etmp)) .and. (tagg >= temps(etmp+1)) )then
+	             wt1=abs( (tagg-temps(etmp)) / (temps(etmp)-temps(etmp+1)) )
+	             wt2=1.0-wt1
+	             eff(k,8) = wt2*efftemp(etmp) + wt1*efftemp(etmp+1)
+	           endif
+	         enddo
+	      endif
+	    endif
+	   enddo
+    else !old aggregation formula
+	    do k = k1(7),k2(7)
+	     if (rx(k,7) .ge. rxmin) then
+	       if (qr(k,7) .gt. 0.) then
+	          eff(k,8) = 1.0
+	       else
+	          eff(k,8) = min(psaaggval,10. ** (0.035 * tx(k,7) - 0.7))
+	       endif
+	     endif
+	    enddo
+	endif  
 endif
 
 ! 9 = cg,ch
