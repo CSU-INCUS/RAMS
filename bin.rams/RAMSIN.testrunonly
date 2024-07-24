@@ -636,11 +636,16 @@
    PSAAGGVAL = 0.2,  ! Maximum aggregation efficiency for AGGFUNC variables = 0 (away from peak temperatures)
    					 ! Setting to 0 turns off aggregation
 					 
-   AGGMIN4 = 0.3, 	!For IAGGFUNC = 1, minimum allowed value of aggregation
-   AGGMIN5 = 0.3,
-   AGGMIN6 = 0.3,
-   AGGMIN7 = 0.3,
-   AGGMIN8 = 0.3,
+   AGGMIN4 = 0, 	!For IAGGFUNC = 1, minimum allowed value of aggregation
+   AGGMIN5 = 0,
+   AGGMIN6 = 0,
+   AGGMIN7 = 0,
+   AGGMIN8 = 0,
+
+   RIMEFACS = 1.0, !Multiplication factor for riming kernels on snow, agg, graupel, haail
+   RIMEFACA = 1.0,
+   RIMEFACG = 1.0,
+   RIMEFACH = 1.0,
 
 
  $END

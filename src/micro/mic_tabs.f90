@@ -748,10 +748,10 @@ do i=1,ibins+1
 enddo
 do i=1,ibins
  do k=1,ibins
-  akbarci(i,k,1)=akbarcs(i,k)
-  akbarci(i,k,2)=akbarca(i,k)
-  akbarci(i,k,3)=akbarcg(i,k)
-  akbarci(i,k,4)=akbarch(i,k)
+  akbarci(i,k,1)=akbarcs(i,k) * rimefacs
+  akbarci(i,k,2)=akbarca(i,k) * rimefaca
+  akbarci(i,k,3)=akbarcg(i,k) * rimefacg
+  akbarci(i,k,4)=akbarch(i,k) * rimefach
  enddo
 enddo
 
