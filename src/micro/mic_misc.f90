@@ -934,7 +934,7 @@ elseif (lcat == 6) then
 
 elseif (lcat == 7) then
 
-   shedmass = 5.236e-7
+   shedmass = 5.236e-7 * shedfac
    do k = k1(lcat),k2(lcat)
 
       if (rx(k,lcat) >= rxmin) then

@@ -25,7 +25,7 @@ character(len=*) :: group,vr,cc
 real :: ff
 integer :: ii,nv
 integer :: inrflg
-integer, parameter ::nvgrid=37,nvstrt=78,nvindat=168,nvsound=10
+integer, parameter ::nvgrid=37,nvstrt=78,nvindat=169,nvsound=10
 integer ::  igrids(nvgrid),istart(nvstrt),iindat(nvindat),isound(nvsound)
 character(len=16) :: grids(nvgrid),start(nvstrt),indat(nvindat),sound(nvsound)
 data igrids/nvgrid*0/,istart/nvstrt*0/,iindat/nvindat*0/,isound/nvsound*0/
@@ -82,7 +82,7 @@ DATA INDAT/  &
      ,'ABC1_MAX','ABC2_MAX','IAGGFUNC4','IAGGFUNC5','IAGGFUNC6'          &
      ,'IAGGFUNC7','IAGGFUNC8','PSAAGGVAL','AGGMIN4','AGGMIN5','AGGMIN6'  &
      ,'AGGMIN7','AGGMIN8','RIMEFACS','RIMEFACA','RIMEFACG'            &
-     ,'RIMEFACH'/
+     ,'RIMEFACH','SHEDFAC'/
 DATA SOUND/  &
       'IPSFLG','ITSFLG','IRTSFLG','IUSFLG','HS','PS','TS','RTS','US','VS'/
 
@@ -409,6 +409,7 @@ IF(GROUP.EQ.'$MODEL_OPTIONS') THEN
  IF(VR.EQ.'RIMEFACA')    CALL varsetf (VR,RIMEFACA,NV,1,FF,0.,5.)
  IF(VR.EQ.'RIMEFACG')    CALL varsetf (VR,RIMEFACG,NV,1,FF,0.,5.)
  IF(VR.EQ.'RIMEFACH')    CALL varsetf (VR,RIMEFACH,NV,1,FF,0.,5.)
+ IF(VR.EQ.'SHEDFAC')    CALL varsetf (VR,SHEDFAC,NV,1,FF,0.,10.)
 ENDIF
 
 IF(GROUP.EQ.'$MODEL_SOUND') THEN
@@ -649,6 +650,7 @@ WRITE(6,'(100(3(A15,E11.4)/))')      &
  ,'RIMEFACA=',RIMEFACA             &
  ,'RIMEFACG=',RIMEFACG             &
  ,'RIMEFACH=',RIMEFACH             &
+ ,'SHEDFAC=',SHEDFAC                &
  ,'CIN_MAX=',CIN_MAX                 &
  ,'CIN_SH=',CIN_SH                   &
  ,'CCN_SH=',CCN_SH                   &

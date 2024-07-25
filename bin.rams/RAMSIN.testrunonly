@@ -647,6 +647,10 @@
    RIMEFACG = 1.0,
    RIMEFACH = 1.0,
 
+   SHEDFAC = 1.0, !Multiplication factor for size of raindrops shed from hail
+		  !Default value of 1 is a 1mm raindrop
+	          !Factor adjusts mass, so 8x would be an increase to a 2mm raindrop
+
 
  $END
 
