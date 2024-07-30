@@ -651,6 +651,7 @@
 		  !Default value of 1 is a 1mm raindrop
 	          !Factor adjusts mass, so 8x would be an increase to a 2mm raindrop
 
+   RAINMINEFF = -5.0, !Cutoff for rain drop breakup efficiency. Default value is -5
 
  $END
 

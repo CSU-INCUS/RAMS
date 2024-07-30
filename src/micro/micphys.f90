@@ -52,7 +52,7 @@ real :: cparm,dparm,rparm,pparm,sparm,aparm,gparm,hparm         &
        ,colf,pi4dt,sedtime0,sedtime1                            &
        ,dimin,diminx,dimax,rimin,rimax,dieci,rieci,scmtime      &
        ,psaaggval,aggmin4,aggmin5,aggmin6,aggmin7,aggmin8       &
-       ,rimefacs,rimefaca,rimefacg,rimefach,shedfac
+       ,rimefacs,rimefaca,rimefacg,rimefach,shedfac,rainmineff
 
 real, dimension(ncat)  :: emb0,emb1,gnu,parm,emb0log,emb1log,dict
 real, dimension(nhcat) :: shape,cfmas,pwmas,cfvt,pwvt,dpsmi,cfden,pwden  &

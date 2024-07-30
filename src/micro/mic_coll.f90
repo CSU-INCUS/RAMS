@@ -605,7 +605,7 @@ endif
 if (jnmb(2) .ge. 1) then
    do k = k1(2),k2(2)
     if (rx(k,2) .ge. rxmin) then
-      eff(k,3) = min( 1.0, max( -5.0 , 2.-exp(0.1326e7*(emb(k,2)-0.113e-6)) ) )
+      eff(k,3) = min( 1.0, max( rainmineff , 2.-exp(0.1326e7*(emb(k,2)-0.113e-6)) ) )
     endif
    enddo
 endif
