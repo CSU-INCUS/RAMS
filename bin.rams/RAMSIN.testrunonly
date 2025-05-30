@@ -624,11 +624,11 @@
    ITRKDUSTIFN = 1,        ! Tracing dust that served as ice nuclei
  !---- Microphysics sensitivity tests ----------
  
-   IAGGFUNC4 = 1,  ! Flag for how to calculate aggregation efficiency between pp,ps,pa 
-   IAGGFUNC5 = 1,  ! Flag for how to calculate aggregation efficiency between ss,aa 
-   IAGGFUNC6 = 1,  ! Flag for how to calculate aggregation efficiency between aa 
-   IAGGFUNC7 = 1,  ! Flag for how to calculate aggregation efficiency between pg,sg,ag,gg 
-   IAGGFUNC8 = 1,  ! Flag for how to calculate aggregation efficiency between gh,sh,ah,gh 
+   IAGGFUNC4 = 2,  ! Flag for how to calculate aggregation efficiency between pp,ps,pa 
+   IAGGFUNC5 = 2,  ! Flag for how to calculate aggregation efficiency between ss,aa 
+   IAGGFUNC6 = 2,  ! Flag for how to calculate aggregation efficiency between aa 
+   IAGGFUNC7 = 2,  ! Flag for how to calculate aggregation efficiency between pg,sg,ag,gg 
+   IAGGFUNC8 = 2,  ! Flag for how to calculate aggregation efficiency between gh,sh,ah,gh 
                    ! 0 - Old calculation from V0 runs
                    ! 1 - New function from Saleeby 'AGG4'
 		   ! 2 - New function but opposing a minimum value
@@ -649,9 +649,47 @@
 
    SHEDFAC = 1.0, !Multiplication factor for size of raindrops shed from hail
 		  !Default value of 1 is a 1mm raindrop
-	          !Factor adjusts mass, so 8x would be an increase to a 2mm raindrop
+	      !Factor adjusts mass, so 8x would be an increase to a 2mm raindrop
 
    RAINMINEFF = -5.0, !Cutoff for rain drop breakup efficiency. Default value is -5
+   
+   !Factors for mass/diam and terminal velocity power law values, default = 1.0
+   
+   CLOUD_CFMAS_FAC = 1.0, 
+   RAIN_CFMAS_FAC = 1.0, 
+   PRIS_CFMAS_FAC = 1.0, 
+   SNOW_CFMAS_FAC = 1.0, 
+   AGG_CFMAS_FAC = 1.0, 
+   GRAUP_CFMAS_FAC = 1.0, 
+   HAIL_CFMAS_FAC = 1.0, 
+   DRIZ_CFMAS_FAC = 1.0, 
+   
+   CLOUD_PWMAS_FAC = 1.0, 
+   RAIN_PWMAS_FAC = 1.0, 
+   PRIS_PWMAS_FAC = 1.0, 
+   SNOW_PWMAS_FAC = 1.0, 
+   AGG_PWMAS_FAC = 1.0, 
+   GRAUP_PWMAS_FAC = 1.0, 
+   HAIL_PWMAS_FAC = 1.0, 
+   DRIZ_PWMAS_FAC = 1.0,
+   
+   CLOUD_CFVT_FAC = 1.0, 
+   RAIN_CFVT_FAC = 1.0, 
+   PRIS_CFVT_FAC = 1.0, 
+   SNOW_CFVT_FAC = 1.0, 
+   AGG_CFVT_FAC = 1.0, 
+   GRAUP_CFVT_FAC = 1.0, 
+   HAIL_CFVT_FAC = 1.0, 
+   DRIZ_CFVT_FAC = 1.0,
+   
+   CLOUD_PWVT_FAC = 1.0, 
+   RAIN_PWVT_FAC = 1.0, 
+   PRIS_PWVT_FAC = 1.0, 
+   SNOW_PWVT_FAC = 1.0, 
+   AGG_PWVT_FAC = 1.0, 
+   GRAUP_PWVT_FAC = 1.0, 
+   HAIL_PWVT_FAC = 1.0, 
+   DRIZ_PWVT_FAC = 1.0,
 
  $END
 
