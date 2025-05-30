@@ -52,7 +52,18 @@ real :: cparm,dparm,rparm,pparm,sparm,aparm,gparm,hparm         &
        ,colf,pi4dt,sedtime0,sedtime1                            &
        ,dimin,diminx,dimax,rimin,rimax,dieci,rieci,scmtime      &
        ,psaaggval,aggmin4,aggmin5,aggmin6,aggmin7,aggmin8       &
-       ,rimefacs,rimefaca,rimefacg,rimefach,shedfac,rainmineff
+       ,rimefacs,rimefaca,rimefacg,rimefach,shedfac,rainmineff  &
+	   ,cloud_cfmas_fac,rain_cfmas_fac,pris_cfmas_fac			&
+	   ,snow_cfmas_fac,agg_cfmas_fac,graup_cfmas_fac			&
+ 	   ,hail_cfmas_fac,driz_cfmas_fac,cloud_pwmas_fac			&
+   	   ,rain_pwmas_fac,pris_pwmas_fac,snow_pwmas_fac			&
+   	   ,agg_pwmas_fac,graup_pwmas_fac,hail_pwmas_fac			&
+   	   ,driz_pwmas_fac,cloud_cfvt_fac,rain_cfvt_fac				&
+  	   ,pris_cfvt_fac,snow_cfvt_fac,agg_cfvt_fac				&
+  	   ,graup_cfvt_fac,hail_cfvt_fac,driz_cfvt_fac				&
+  	   ,cloud_pwvt_fac,rain_pwvt_fac,pris_pwvt_fac				&
+  	   ,snow_pwvt_fac,agg_pwvt_fac,graup_pwvt_fac				&
+  	   ,hail_pwvt_fac,driz_pwvt_fac
 
 real, dimension(ncat)  :: emb0,emb1,gnu,parm,emb0log,emb1log,dict
 real, dimension(nhcat) :: shape,cfmas,pwmas,cfvt,pwvt,dpsmi,cfden,pwden  &

@@ -94,6 +94,7 @@ data jpairc/  &
 
 !  Define several parameters from above data list
 
+
 do lhcat=1,nhcat
    !Using original RAMS 4.3 power laws
    if(iplaws==0) then
@@ -116,16 +117,52 @@ do lhcat=1,nhcat
    endif
 
    shape(lhcat) = dstprms(1,lhcat)
-   cfmas(lhcat) = dstprms(2,lhcat)
-   pwmas(lhcat) = dstprms(3,lhcat)
-   cfvt (lhcat) = dstprms(4,lhcat)
-   pwvt (lhcat) = dstprms(5,lhcat)
+   cfmas(lhcat) = dstprms(2,lhcat) 
+   pwmas(lhcat) = dstprms(3,lhcat) 
+   cfvt (lhcat) = dstprms(4,lhcat) 
+   pwvt (lhcat) = dstprms(5,lhcat) 
 
    do khcat=1,nhcat
       ipairc(lhcat,khcat) = jpairc(lhcat,khcat)
       ipairr(lhcat,khcat) = jpairr(lhcat,khcat)
    enddo
 enddo
+
+cfmas(1) = cfmas(1) * cloud_cfmas_fac
+cfmas(2) = cfmas(2) * rain_cfmas_fac
+cfmas(3) = cfmas(3) * pris_cfmas_fac
+cfmas(4) = cfmas(4) * snow_cfmas_fac
+cfmas(5) = cfmas(5) * agg_cfmas_fac
+cfmas(6) = cfmas(6) * graup_cfmas_fac
+cfmas(7) = cfmas(7) * hail_cfmas_fac
+cfmas(8) = cfmas(8) * driz_cfmas_fac
+
+pwmas(1) = pwmas(1) * cloud_pwmas_fac
+pwmas(2) = pwmas(2) * rain_pwmas_fac
+pwmas(3) = pwmas(3) * pris_pwmas_fac
+pwmas(4) = pwmas(4) * snow_pwmas_fac
+pwmas(5) = pwmas(5) * agg_pwmas_fac
+pwmas(6) = pwmas(6) * graup_pwmas_fac
+pwmas(7) = pwmas(7) * hail_pwmas_fac
+pwmas(8) = pwmas(8) * driz_pwmas_fac
+
+cfvt(1) = cfvt(1) * cloud_cfvt_fac
+cfvt(2) = cfvt(2) * rain_cfvt_fac
+cfvt(3) = cfvt(3) * pris_cfvt_fac
+cfvt(4) = cfvt(4) * snow_cfvt_fac
+cfvt(5) = cfvt(5) * agg_cfvt_fac
+cfvt(6) = cfvt(6) * graup_cfvt_fac
+cfvt(7) = cfvt(7) * hail_cfvt_fac
+cfvt(8) = cfvt(8) * driz_cfvt_fac
+
+pwvt(1) = pwvt(1) * cloud_pwvt_fac
+pwvt(2) = pwvt(2) * rain_pwvt_fac
+pwvt(3) = pwvt(3) * pris_pwvt_fac
+pwvt(4) = pwvt(4) * snow_pwvt_fac
+pwvt(5) = pwvt(5) * agg_pwvt_fac
+pwvt(6) = pwvt(6) * graup_pwvt_fac
+pwvt(7) = pwvt(7) * hail_pwvt_fac
+pwvt(8) = pwvt(8) * driz_pwvt_fac
 
 do lcat=1,ncat
    lhcat = lcat0(lcat)
