@@ -224,9 +224,9 @@ HFILIN = '/nobackup/pmarines/V/S/CA_B1_3G/T4/r/a-A-2018-12-13-183000-head.txt',
 			      ! 300s (5 min) for G1&G2 / 30s for G3
                               !   = 0 : no lite files
 
-   NLITE_VARS=55,
+   NLITE_VARS=56,
 
-   LITE_VARS= 'THETA','RV','WP','VP','UP','PI','PP',                 ! 3D State (7)
+   LITE_VARS= 'THETA','RV','WC','WP','VP','UP','PI','PP',                 ! 3D State (7)
             'CCP','CDP','CRP','CHP','CGP','CPP','CAP','CSP',         ! 3D Number concentration (8)
             'CN1NP','REGEN_AERO1_NP','CIFNP',                        ! 3D Aerosol # Concentrations (3)
             'RCP','RDP','RRP','RHP','RGP','RPP','RAP','RSP',         ! 3D Mixing Ratio (8)
@@ -245,7 +245,7 @@ HFILIN = '/nobackup/pmarines/V/S/CA_B1_3G/T4/r/a-A-2018-12-13-183000-head.txt',
    ! on the C compiler.
 
    ACC_LT_VAR= 0.001, 0.0000001,                               ! 'THETA','RV',
-               0.001, 0.001, 0.001, 0.0001, 0.000001,          ! 'WP','VP','UP','PI','PP',
+               0.001, 0.001, 0.001, 0.001, 0.0001, 0.000001,   ! 'WC','WP','VP','UP','PI','PP',
                0.1, 0.1, 0.1, 0.1,                             ! 'CCP','CDP','CRP','CHP',
                0.1, 0.1, 0.1, 0.1,                             ! 'CGP','CPP','CAP','CSP',
                10.0, 10.0, 10.0,                               ! 'CN1NP','REGEN_AERO1_NP','CIFNP'
