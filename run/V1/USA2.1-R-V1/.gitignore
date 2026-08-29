@@ -1,0 +1,3 @@
+# ignore stdout directory
+stdout/*
+rams-6.3.04

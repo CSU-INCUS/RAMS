@@ -1,0 +1,1 @@
+Filenames that end with the "sst" represent the simulations that final simulations that use the ERA5 ssts.
